@@ -92,16 +92,20 @@ get_linea:
     adc #0
     sta ZEROPAGE_POINTER_2 + 1
 	rts
-	
+
+//FunciOn para rellenar la pantalla con un caracter
+//ParAmetros:
+//	PARAM1: caracter con el cual se rellena
+//	PARAM2: color del caracter	
 borra_pant:
 	ldx #0
 loop_pant:	
-	lda #CHAR_VACIO
+	lda PARAM1
 	sta $0400,x
 	sta $0500,x
 	sta $0600,x
 	sta $0700,x	
-	lda #0
+	lda PARAM2
 	sta $d800,x
 	sta $d900,x
 	sta $da00,x
@@ -109,6 +113,18 @@ loop_pant:
 	inx
 	bne loop_pant
 	rts
+
+//Funcio para borrar sOlo la lInea de la puntuaciOn
+borra_lin_p:
+	ldx #39
+loop_b_p:
+	lda #CHAR_VACIO
+	sta $0400,x
+	dex
+	bne loop_b_p
+	ldx #0
+	sta $0400,x
+	rts		
 
 //FunciOn para comprobar si el caracter marcado por el puntero
 //forma parte de la cueva o no.
@@ -132,8 +148,10 @@ set_caracter:
 	ldx #4
 	stx PARAM4
 puntos:
-	lda #CHAR_VACIO
+	lda #CHAR_FONDO
 	sta (ZEROPAGE_POINTER_1),y
+	lda #14
+	sta (ZEROPAGE_POINTER_2),y
 	jsr puntua
 	jsr m_puntuacion
 	jmp no_com_down
@@ -162,7 +180,7 @@ no_com_down:
 	sta PARAM5	//la comprobaciOn del carcater de abajo
 	rts
 !sig_caracter:	
-	cmp #CHAR_VACIO
+	cmp #CHAR_FONDO
 	bne !sig_caracter+
 	rts
 !sig_caracter:
@@ -170,6 +188,8 @@ no_com_down:
 	rts
 
 marcadores:
+	jsr borra_lin_p
+
 	lda #255
 	sta ZEROPAGE_POINTER_4
 

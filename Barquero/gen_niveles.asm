@@ -11,7 +11,13 @@ gen_niveles:
 	sty sprites.desp_roca
 	ldx #24					//Se marca el principio del nivel de agua
 	stx vars_agua.linea
+	
+	lda #CHAR_FONDO
+	sta PARAM1
+	lda #14
+	sta PARAM2
 	jsr borra_pant		//Borra la pantalla
+	
 	jsr marcadores		//Regenera los marcadores
 	ldx #CHAR_CAVE_INIT	//Se inicializa el caracter para formar cuevas
 	stx vars_cueva.car_actu

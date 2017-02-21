@@ -82,6 +82,7 @@
 .const CHAR_VACIO			   = 74//32
 .const CHAR_MONEDA			   = 96
 .const CHAR_TESORO			   = 97
+.const CHAR_FONDO			   = 105
 
 //Variables para el manejo de los sprites
 .namespace sprites{

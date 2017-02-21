@@ -50,4 +50,4 @@ prin_esquina:
 	sta (ZEROPAGE_POINTER_1),y
 	lda vars_cueva.color
 	sta (ZEROPAGE_POINTER_2),y	
-	rts
+	rts	

@@ -396,6 +396,7 @@ NIVEL21:
 	.byte ESTALACT,  1,  1, 14, 18, DOWN 
 	.byte SALIENTE, 22 , 1, 14, 16,  8, LEFT  ,DOWN			
 	.byte BLOQUE,    0,  1, 14,  2, 22
+	.byte BLOQUE,   38,  1, 14,  2, 22
 	.byte MONEDA,	 6, 16
 	.byte MONEDA,	10, 16				
 	.byte MONEDA,	14, 16
