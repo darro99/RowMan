@@ -243,8 +243,6 @@ carga_sal_arr:
 	sta vars_cueva.sentido
 	lda #0
 	jsr carga_salida_gen
-	lda #CHAR_CAVE_SAL_A_1
-	sta vars_cueva.caracter
 	jsr prin_salida_a
 	ldy ZEROPAGE_POINTER_5
 	jmp niv_prin 
@@ -255,7 +253,6 @@ carga_sal_izq:
 	dec vars_cueva.sentido
 	lda #1
 	jsr carga_salida_gen
-	lda #CHAR_CAVE_SAL_I
 	jmp fin_carga_sal
 	  
 
@@ -272,7 +269,6 @@ carga_sal_der:
 carga_sal_dns:		
 	lda #2
 	jsr carga_salida_gen
-	lda #CHAR_CAVE_SAL_D
 fin_carga_sal:
 	sta vars_cueva.caracter
 	jsr prin_salida_b
@@ -287,12 +283,14 @@ carga_salida_gen:
 	iny
 	lda (ZEROPAGE_POINTER_3),y
 	sta vars_cueva.ancho	
-	//iny
-	//lda (ZEROPAGE_POINTER_3),y
 	lda vars_cueva.sentido
 	ldx vars_cueva.direccion
 	sta salidas_l, x
-	lda #14
+	lda #13
 	sta vars_cueva.color
+	lda #CHAR_CAVE_SAL_A
+	clc
+	adc vars_cueva.direccion
+	sta vars_cueva.caracter
 	sty ZEROPAGE_POINTER_5
 	rts					

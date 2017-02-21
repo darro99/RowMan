@@ -17,12 +17,8 @@ prin_bloque:
 prin_salida_a:
 	jsr prin_esquina
     inc vars_cueva.x
-	lda #CHAR_CAVE_SAL_A_2
-	sta vars_cueva.caracter
 	jsr get_linea
 	jsr pinta_w
-	lda #CHAR_CAVE_SAL_A_3
-	sta vars_cueva.caracter
 	dec vars_cueva.ancho
 	lda vars_cueva.x
 	adc vars_cueva.ancho
@@ -33,14 +29,12 @@ prin_salida_a:
 	
 prin_salida_b:
 	jsr prin_esquina
-	inc vars_cueva.caracter
 for_salida_b:	
 	inc vars_cueva.y
 	jsr get_linea
 	jsr prin_esquina
 	dec vars_cueva.ancho
 	bne for_salida_b
-	inc vars_cueva.caracter
 	jsr prin_esquina
 	rts		
 	

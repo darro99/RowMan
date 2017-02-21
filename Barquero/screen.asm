@@ -156,17 +156,17 @@ puntos:
 	jsr m_puntuacion
 	jmp no_com_down
 !sig_caracter:	
-	cmp #CHAR_CAVE_SAL_DC
+	cmp #CHAR_CAVE_SAL_D
 	bne !sig_caracter+		
 	ldx #2
 	jmp nuevo_niv	
 !sig_caracter:	
-	cmp #CHAR_CAVE_SAL_IC
+	cmp #CHAR_CAVE_SAL_I
 	bne !sig_caracter+		
 	ldx #1
 	jmp nuevo_niv	
 !sig_caracter:	
-	cmp #CHAR_CAVE_SAL_A_2
+	cmp #CHAR_CAVE_SAL_A
 	bne !sig_caracter+	
 	ldx #0
 nuevo_niv:	

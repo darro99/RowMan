@@ -71,18 +71,14 @@
 .const CHAR_CAVE_DI_LEFT	   = 79//223	// '/'
 .const CHAR_CAVE_INIT		   = 82		//Caracter incio de las cuevas
 .const CHAR_CAVE_END		   = 96		//Caracter + 1 fin de las cuevas
-.const CHAR_CAVE_SAL_D		   = 98		//Caracter incio salida derecha 
-.const CHAR_CAVE_SAL_I		   = 101	//Caracter incio salida izquierda
-.const CHAR_CAVE_SAL_A_1	   = 101	//Caracter salida arriba 1
-.const CHAR_CAVE_SAL_A_2	   = 104	//Caracter salida arriba 2
-.const CHAR_CAVE_SAL_A_3	   = 98		//Caracter salida arriba 3
-.const CHAR_CAVE_SAL_DC		   = 99
-.const CHAR_CAVE_SAL_IC		   = 102
+.const CHAR_CAVE_SAL_A		   = 98
+.const CHAR_CAVE_SAL_I		   = 99
+.const CHAR_CAVE_SAL_D		   = 100
 
 .const CHAR_VACIO			   = 74//32
 .const CHAR_MONEDA			   = 96
 .const CHAR_TESORO			   = 97
-.const CHAR_FONDO			   = 105
+.const CHAR_FONDO			   = 101
 
 //Variables para el manejo de los sprites
 .namespace sprites{
