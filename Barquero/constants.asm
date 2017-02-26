@@ -63,6 +63,8 @@
 .const SALIZQU	  = 11		//Salida hacia la izquierda
 .const SALDERE	  = 12		//Salida hacia la derecha
 .const SALIDAD	  = 13		//Salida hacia la derecha y una pantalla indicada
+.const BTESOROS   = 14		//Bloque de monedillas
+.const BMONEDAS   = 15		//Bloque de tesoros
 .const FIN_NIVEL  = 255		//Fin de nivel
 //Carcateres para formar la cueva
 .const CHAR_CAVE_ID_RIGHT	   = 76//95		// '\'

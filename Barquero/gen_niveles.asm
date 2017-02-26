@@ -50,9 +50,17 @@ niv_prin:
 	bne !siguiente+
 	jmp carga_moneda
 !siguiente:
+	cmp #BMONEDAS
+	bne !siguiente+
+	jmp carga_bmonedas	
+!siguiente:
 	cmp #TESORO
 	bne !siguiente+
-	jmp carga_tesoro	
+	jmp carga_tesoro
+!siguiente:
+	cmp #BTESOROS
+	bne !siguiente+
+	jmp carga_btesoros		
 !siguiente:	
 	cmp #JUGADOR
 	bne !siguiente+
@@ -185,7 +193,24 @@ carga_moneda:
 	lda #15
 	sta (ZEROPAGE_POINTER_2),y
 	ldy ZEROPAGE_POINTER_5
-	jmp niv_prin  
+	jmp niv_prin
+
+carga_bmonedas:
+	jsr carga_gen
+	lda #CHAR_MONEDA
+	sta vars_cueva.caracter
+carga_bmonedas2:	
+	iny
+	lda (ZEROPAGE_POINTER_3),y
+	sta vars_cueva.lineas
+	lda vars_cueva.ancho
+	sta vars_cueva.direccion
+	lda vars_cueva.x
+	sta vars_cueva.sentido
+	sty ZEROPAGE_POINTER_5
+	jsr prin_tesoros_lin	
+	ldy ZEROPAGE_POINTER_5
+	jmp niv_prin
 	
 carga_tesoro:
 	jsr carga_obj_gen
@@ -195,6 +220,12 @@ carga_tesoro:
 	sta (ZEROPAGE_POINTER_2),y
 	ldy ZEROPAGE_POINTER_5
 	jmp niv_prin  
+
+carga_btesoros:
+	jsr carga_gen
+	lda #CHAR_TESORO
+	sta vars_cueva.caracter
+	jmp carga_bmonedas2	
 
 carga_obj_gen:
 	iny

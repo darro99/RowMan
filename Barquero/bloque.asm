@@ -45,3 +45,21 @@ prin_esquina:
 	lda vars_cueva.color
 	sta (ZEROPAGE_POINTER_2),y	
 	rts	
+	
+prin_tesoros_lin:
+	lda vars_cueva.sentido
+	sta vars_cueva.x
+	lda vars_cueva.direccion
+	sta vars_cueva.ancho
+loop_prin_tesoros_lin:	
+	jsr get_linea
+	jsr prin_esquina
+	inc vars_cueva.x
+	inc vars_cueva.x
+	dec vars_cueva.ancho
+	bne loop_prin_tesoros_lin
+	inc vars_cueva.y
+	inc vars_cueva.y
+	dec vars_cueva.lineas
+	bne prin_tesoros_lin
+	rts	
