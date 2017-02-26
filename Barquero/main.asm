@@ -54,7 +54,7 @@ main:
     ldy #9
     sty vars_game.vidas
    
-	lda #4
+	lda #24
 	sta vars_game.nivel
 	
 	jsr gen_niveles

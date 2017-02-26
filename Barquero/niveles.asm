@@ -6,7 +6,7 @@ pantallas:
 	.word NIVEL7,  NIVEL8,  NIVEL9,  NIVEL10, NIVEL11
 	.word NIVEL12, NIVEL13, NIVEL14, NIVEL15, NIVEL16
 	.word NIVEL17, NIVEL18, NIVEL19, NIVEL20, NIVEL21
-	.word NIVEL22
+	.word NIVEL22, NIVEL23, NIVEL24
 
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
@@ -260,7 +260,7 @@ NIVEL14:
 	.byte MONEDA,	24,	 8
 	.byte MONEDA,	29,	 4
 	.byte MONEDA,	32,	 2
-	.byte DELAY, 100, 40
+	.byte DELAY, 150, 40
 	.byte FIN_NIVEL
 NIVEL15:
 	.byte JUGADOR, 74,222
@@ -278,7 +278,7 @@ NIVEL15:
 	.byte MONEDA,	12,	14
 	.byte MONEDA,	18,	10
 	.byte TESORO,	35,	 3
-	.byte DELAY, 100, 40
+	.byte DELAY, 150, 40
 	.byte FIN_NIVEL	
 NIVEL16:
 	.byte JUGADOR, 254,222
@@ -296,7 +296,7 @@ NIVEL16:
 	.byte MONEDA,	14, 18
 	.byte MONEDA,	22, 18
 	.byte MONEDA,	30, 20
-	.byte DELAY, 100, 40
+	.byte DELAY, 150, 40
 	.byte FIN_NIVEL
 NIVEL17:
 	.byte JUGADOR, 254,222
@@ -414,4 +414,66 @@ NIVEL22:
 	.byte SALIDAD,   16, 37, 19,  5 
 	.byte DELAY, 255, 50
 	.byte FIN_NIVEL
+NIVEL23:
+	.byte JUGADOR,  70,222
+	.byte ROCABMS,  34, 30, 20
+	.byte ROCA,    110, 28, 20
+	.byte ROCA,    140, 18, 20
+	.byte ROCA,    225, 25, 20
+	.byte SALIZQU,   0, 15, 10
+	.byte SALARRI,   8,  1, 10
+	.byte SALDERE,  39, 11, 12
+	.byte ESTALACT, 10, 24, 15, 16, UP
+	.byte BLOQUE,   20,  0, 15, 20, 10
+	.byte SALIENTE,  0,  8, 15,  8,  2, RIGHT  ,DOWN
+	.byte BLOQUE,    0,  0, 15,  8,  8
+	.byte TESORO,	24, 13
+	.byte TESORO,	28, 13
+	.byte TESORO,	32, 13
+	.byte TESORO,	36, 13
+	.byte MONEDA,	 9,  8
+	.byte MONEDA,	 9,  6
+	.byte MONEDA,	 9,  4
+	.byte MONEDA,	 9,  2
+	.byte MONEDA,	18,  8
+	.byte MONEDA,	18,  6
+	.byte MONEDA,	18,  4
+	.byte MONEDA,	18,  2
+	.byte DELAY, 90, 50
+	.byte FIN_NIVEL
+NIVEL24:
+	.byte JUGADOR,  70,222
+	.byte BLOQUE,   16,  1, 14, 6, 5
+	.byte SALIENTE,  8,  8, 14, 8, 2, LEFT ,UP
+	.byte BLOQUE,    8,  7, 14, 8, 7
+	.byte SALIENTE,  8, 14, 14, 8, 2, LEFT ,DOWN
+	.byte BLOQUE,   16, 15, 14, 6, 5
+	.byte SALIENTE, 22,  6, 14, 6, 2, RIGHT ,DOWN
+	.byte SALIENTE, 22, 16, 10, 6, 2, RIGHT ,UP
+	.byte MONEDA,	32, 16
+	.byte MONEDA,	32, 14
+	.byte MONEDA,	32, 12
+	.byte MONEDA,	32, 10
+	.byte MONEDA,	32,  8
+	.byte MONEDA,	32,  6
+	.byte MONEDA,	32,  4
+	.byte MONEDA,	32,  2
+	.byte MONEDA,	38, 16
+	.byte MONEDA,	38, 14
+	.byte MONEDA,	38, 12
+	.byte MONEDA,	38, 10
+	.byte MONEDA,	38,  8
+	.byte MONEDA,	38,  6
+	.byte MONEDA,	38,  4
+	.byte MONEDA,	38,  2
+	.byte TESORO,	35, 18
+	.byte TESORO,	35, 16
+	.byte TESORO,	35, 14
+	.byte TESORO,	35, 12
+	.byte TESORO,	35, 10
+	.byte TESORO,	35,  8
+	.byte TESORO,	35,  6
+	.byte TESORO,	35,  4			
+	.byte DELAY, 255, 255
+	.byte FIN_NIVEL	
 					
