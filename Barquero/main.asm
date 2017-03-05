@@ -51,10 +51,10 @@ main:
     jsr init_sprites
     jsr init_screen
     
-    ldy #9
+    ldy #NUMVIDAS
     sty vars_game.vidas
    
-	lda #24
+	lda #4
 	sta vars_game.nivel
 	
 	jsr gen_niveles

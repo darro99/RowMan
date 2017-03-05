@@ -63,4 +63,6 @@ salidas_l:
 puntuacion://$C051 
   .byte 0,0,0,0,0,0
 txt_vidas: //Vidas $C057 
-  .byte 57, 18, 13, 10, 28, 255   	  
+  .byte 57, 18, 13, 10, 28, 255
+txt_gameover: //GAME OVER $C05D
+  .byte 42, 36, 48, 40, 74, 50, 57, 40, 53, 255    	  

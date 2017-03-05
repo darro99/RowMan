@@ -34,6 +34,13 @@ end_joy:
 	rts	
 	
 comp_fire:
+	cpx #GAMEOVER
+	bne comp_fire2 
+	cpy #0
+	beq comp_fire2
+	dey 
+	bne comp_f_end
+comp_fire2:	
 	lda vars_game.fire
 	cmp #1
 	beq comp_f_end

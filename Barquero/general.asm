@@ -24,6 +24,29 @@ muerte:
 game_over:
 	ldx #GAMEOVER			//Se pone la bandera de Game Over
 	stx vars_game.is_dead
+	lda #CHAR_VACIO
+	sta PARAM1
+	lda #1
+	sta PARAM2
+	sta SP_POSITION + 1 	//Oculta la barca
+	jsr borra_pant
+	jsr oculta_rocas
+	lda #$C0		//Escribe en la pantalla el literal 'GAME OVER'
+	sta ZEROPAGE_POINTER_3 + 1
+	lda #$5D			
+	sta ZEROPAGE_POINTER_3
+	lda #16
+	sta PARAM1
+	lda #12
+	sta PARAM2
+	lda #255
+	sta ZEROPAGE_POINTER_4
+	jsr get_linea
+	jsr print_txt
+	jsr init_agua
+	ldx #0
+	stx vars_game.fire
+	ldy #10
 	rts	
 	
 principal:
@@ -42,7 +65,16 @@ principal:
 	ldx #0
 	stx BORDER
 	rts
-gameo_prin:	
+gameo_prin:
+	ldx vars_game.fire
+	cpx #0
+	beq fin_principal
+	ldy #NUMVIDAS
+    sty vars_game.vidas
+	lda #4					//Se reinicia el juego,
+	sta vars_game.nivel		//PERO DEBERiA DE IR A PANTALLA PRINCIPAL
+	jsr gen_niveles
+	jsr init_agua
 fin_principal:
 	rts	
 	
