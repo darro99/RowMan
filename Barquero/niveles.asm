@@ -7,7 +7,8 @@ pantallas:
 	.word NIVEL12, NIVEL13, NIVEL14, NIVEL15, NIVEL16
 	.word NIVEL17, NIVEL18, NIVEL19, NIVEL20, NIVEL21
 	.word NIVEL22, NIVEL23, NIVEL24, NIVEL25, NIVEL26
-	.word NIVEL27, NIVEL28
+	.word NIVEL27, NIVEL28, NIVEL29, NIVEL30, NIVEL31
+	.word NIVEL32
 
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
@@ -388,9 +389,9 @@ NIVEL21:
 	.byte FIN_NIVEL
 NIVEL22:
 	.byte JUGADOR,  70,222
-	.byte BLOQUE,    0, 16, 11, 39, 2
+	.byte BLOQUE,    0, 16, 11, 40, 2
 	.byte SALIENTE,  0, 18, 11,  8, 2, RIGHT  ,DOWN	
-	.byte SALIDAD,  16, 37, 19,  5 
+	.byte SALIDAD,  16, 39, 19,  5 
 	.byte DELAY, 255, 50
 	.byte FIN_NIVEL
 NIVEL23:
@@ -410,7 +411,7 @@ NIVEL23:
 	.byte BMONEDAS,  8,  2, 15, 7, 4
 	.byte DELAY, 90, 50
 	.byte FIN_NIVEL
-NIVEL24: //ESPACIAL COMMODORE
+NIVEL24: //ESPECIAL COMMODORE
 	.byte JUGADOR,  70,222
 	.byte SALARRI,   0,  1, 38
 	.byte BLOQUE,   16,  1, 14, 6, 5
@@ -495,4 +496,64 @@ NIVEL28:
 	.byte BMONEDAS,  4,  6, 15,  6,  2	
 	.byte DELAY, 90, 50
 	.byte FIN_NIVEL	
-			
+NIVEL29:	
+	.byte JUGADOR, 176,222
+	.byte ROCABMS,  25, 70, 20
+	.byte ROCA,     65, 54, 25
+	.byte SALARRI,  13,  1, 12
+	.byte SALIZQU,   0,  1, 14
+	.byte SALDERE,  39,  1, 14
+	.byte ESTALACT,  1,  0, 15, 12, DOWN
+	.byte ESTALACT, 14, 10, 15, 12, DOWN
+	.byte ESTALACT, 27,  0, 15, 12, DOWN
+	.byte SALIENTE,  0, 24, 15, 10,  2, RIGHT ,UP
+	.byte SALIENTE, 30, 24, 15, 10,  2, LEFT ,UP
+	.byte BMONEDAS, 14,  5, 15,  6,  3
+	.byte BTESOROS,  5,  7, 11,  2,  6
+	.byte BTESOROS, 32,  7, 11,  2,  6
+	.byte DELAY, 90, 50
+	.byte FIN_NIVEL	
+NIVEL30:	
+	.byte JUGADOR, 176,222	
+	.byte ROCA,     173, 40, 20
+	.byte ROCA,     121, 40, 30
+	.byte ROCA,     220, 40, 30
+	.byte SALARRI,  13,  1, 12
+	.byte BLOQUE, 	 0,  0, 15, 13, 14
+	.byte BLOQUE, 	27,  0, 15, 13, 14
+	.byte SALIENTE, 27, 14, 15, 13,  4, LEFT  ,DOWN
+	.byte SALIENTE,  0, 14, 15, 13,  4, RIGHT ,DOWN
+	.byte ESTALACT, 17, 10, 15,  6, DOWN
+	.byte ESTALACT, 17, 11, 15,  6, UP
+	.byte BTESOROS, 13,  5, 11,  2,  8
+	.byte BTESOROS, 24,  5, 11,  2,  8
+	.byte DELAY, 90, 50
+	.byte FIN_NIVEL
+NIVEL31:	
+	.byte JUGADOR, 176,222
+	.byte ROCABMS,   55, 40, 13
+	.byte ROCA,      40, 40, 13
+	.byte ROCA,     100, 30, 13
+	.byte ROCA,     236, 33, 13
+	.byte SALIDAD,  36, 39,  1, 22
+	.byte SALIZQU,   0,  1, 22
+	.byte BMONEDAS, 10,  5, 15, 10,  7
+	.byte BMONEDAS,  2,  8, 15,  4,  4
+	.byte BMONEDAS, 30,  8, 15,  4,  4
+	.byte ESTALACT,  1,  0, 15, 12, DOWN
+	.byte ESTALACT,  1, 24, 15, 12, UP
+	.byte ESTALACT, 14,  0, 15, 12, DOWN
+	.byte ESTALACT, 14, 10, 15, 12, DOWN
+	.byte ESTALACT, 14, 11, 15, 12, UP
+	.byte ESTALACT, 27,  0, 15, 12, DOWN
+	.byte ESTALACT, 27, 24, 15, 12, UP
+	.byte DELAY, 90, 50
+	.byte FIN_NIVEL
+NIVEL32:	
+	.byte JUGADOR, 176,222
+	.byte BLOQUE,    0, 16, 10, 40, 2
+	.byte BLOQUE,   33, 18, 10,  7, 5
+	.byte SALIENTE, 25, 18, 10,  8, 2, LEFT  ,DOWN	
+	.byte SALIDAI,   1,  0, 19,  5 
+	.byte DELAY, 255, 50
+	.byte FIN_NIVEL						
