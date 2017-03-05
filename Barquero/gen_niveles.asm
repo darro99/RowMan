@@ -90,7 +90,11 @@ niv_prin:
 	cmp #SALIDAD
 	bne !siguiente+
 	jmp carga_sal_dp
-							
+!siguiente:
+	cmp #SALIDAI
+	bne !siguiente+
+	jmp carga_sal_ip	
+						
 !siguiente:	
 	cmp #DELAY
 	bne !siguiente+
@@ -277,20 +281,23 @@ carga_sal_arr:
 	jsr prin_salida_a
 	ldy ZEROPAGE_POINTER_5
 	jmp niv_prin 
+
+carga_sal_ip:
+	jsr carga_sal_sal
+	jmp carga_sal_ins
 	
 carga_sal_izq:
 	lda vars_game.nivel
 	sta vars_cueva.sentido
 	dec vars_cueva.sentido
+carga_sal_ins:	
 	lda #1
 	jsr carga_salida_gen
 	jmp fin_carga_sal
 	  
 
 carga_sal_dp:
-	iny
-	lda (ZEROPAGE_POINTER_3),y	//Carga la pantalla que queremos
-	sta vars_cueva.sentido
+	jsr carga_sal_sal
 	jmp carga_sal_dns			
 		  
 carga_sal_der:
@@ -324,4 +331,10 @@ carga_salida_gen:
 	adc vars_cueva.direccion
 	sta vars_cueva.caracter
 	sty ZEROPAGE_POINTER_5
-	rts					
+	rts	
+
+carga_sal_sal:
+	iny
+	lda (ZEROPAGE_POINTER_3),y	//Carga la pantalla que queremos
+	sta vars_cueva.sentido
+	rts						
