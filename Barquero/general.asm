@@ -46,7 +46,8 @@ game_over:
 	jsr init_agua
 	ldx #0
 	stx vars_game.fire
-	ldy #10
+	ldy #255
+	sty PARAM1
 	rts	
 	
 principal:

@@ -36,9 +36,7 @@ end_joy:
 comp_fire:
 	cpx #GAMEOVER
 	bne comp_fire2 
-	cpy #0
-	beq comp_fire2
-	dey 
+	dec PARAM1
 	bne comp_f_end
 comp_fire2:	
 	lda vars_game.fire

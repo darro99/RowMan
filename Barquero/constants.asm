@@ -18,7 +18,7 @@
 .const MUERTO 	= 1
 .const GAMEOVER = 2
 
-.const NUMVIDAS = 2
+.const NUMVIDAS = 9
 
 //Variables para el pintado y animaciOn del agua
 .namespace vars_agua {
