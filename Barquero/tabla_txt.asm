@@ -58,11 +58,13 @@ rocas_vel:	//Velocidad de cada una de las rocas ($C039)
   .byte 0,0,0,0,0,0,0
 rocas_vela:  
   .byte 0,0,0,0,0,0,0
+rocas_del:	//Delay actual de cada una de las rocas (AnimaciOn)  
+  .byte 0,0,0,0,0,0,0  
 salidas_l:
   .byte 0,0,0   
-puntuacion://$C051 
+puntuacion://$C058
   .byte 0,0,0,0,0,0
-txt_vidas: //Vidas $C057 
+txt_vidas: //Vidas $C05E
   .byte 57, 18, 13, 10, 28, 255
-txt_gameover: //GAME OVER $C05D
+txt_gameover: //GAME OVER $C064
   .byte 42, 36, 48, 40, 74, 50, 57, 40, 53, 255    	  

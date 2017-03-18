@@ -33,7 +33,7 @@ game_over:
 	jsr oculta_rocas
 	lda #$C0		//Escribe en la pantalla el literal 'GAME OVER'
 	sta ZEROPAGE_POINTER_3 + 1
-	lda #$5D			
+	lda #$64			
 	sta ZEROPAGE_POINTER_3
 	lda #16
 	sta PARAM1

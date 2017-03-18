@@ -215,7 +215,7 @@ marcadores:
 	
 	lda #$C0		//Escribe en la pantalla el literal 'Vidas'
 	sta ZEROPAGE_POINTER_3 + 1
-	lda #$57			
+	lda #$5E			
 	sta ZEROPAGE_POINTER_3
 	lda #30
 	sta PARAM1
@@ -229,7 +229,7 @@ m_puntuacion:
 	sta PARAM1
 	lda #0
 	sta PARAM2
-	lda #$51		//Escribe en la pantalla la puntuaciOn
+	lda #$58		//Escribe en la pantalla la puntuaciOn
 	sta ZEROPAGE_POINTER_3
 	lda #$C0
 	sta ZEROPAGE_POINTER_3 + 1

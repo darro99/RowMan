@@ -16,7 +16,8 @@ rocas:
 	beq mov_roca
 	adc #1
 	sta rocas_vela, y
-	jmp mas_roca
+	//jmp mas_roca  //Con este salto no hay animaciOn
+	jmp anim_roca
 mov_roca:
 	ldx tabla_spy, y
 	stx sprites.desp_roca	
@@ -37,7 +38,30 @@ mov_roca:
 cero_cont:	
 	lda #0
 	sta rocas_vela, y
+
+anim_roca:
+	ldx rocas_del, y
+	dex	
+	bne anim_roca_sig	
+	lda #200
+	sta rocas_del, y
+	iny
+	ldx SP_POINTER, y
+	inx
+	cpx #SP_PROCK_FIN
+	bne anim_roca_next
+	ldx #SP_PROCK		//Reset de la animaciOn
+	jmp anim_roca_next
 	
+anim_roca_sig:
+	txa
+	sta rocas_del, y
+	jmp mas_roca
+	
+anim_roca_next:
+	txa
+	sta SP_POINTER, y	
+
 mas_roca:	
 	inc sprites.puntero_roca
 	lda sprites.puntero_roca

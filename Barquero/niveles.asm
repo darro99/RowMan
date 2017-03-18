@@ -10,6 +10,7 @@ pantallas:
 	.word NIVEL27, NIVEL28, NIVEL29, NIVEL30, NIVEL31
 	.word NIVEL32, NIVEL33, NIVEL34, NIVEL35, NIVEL36
 	.word NIVEL37, NIVEL38, NIVEL39, NIVEL40, NIVEL41
+	.word NIVEL42, NIVEL43
 
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
@@ -451,8 +452,8 @@ NIVEL27:
 	.byte FIN_NIVEL	
 NIVEL28:
 	.byte JUGADOR, 248,222	
-	.byte ROCA,    120, 54, 25
-	.byte ROCA,    175, 70, 20
+	.byte ROCA,    120, 34, 25
+	.byte ROCA,    174, 30, 20
 	.byte SALIZQU,   0,  1,  8
 	.byte ESTALACT,  1,  0, 15, 12, DOWN
 	.byte ESTALACT, 14,  0, 15, 12, DOWN
@@ -581,6 +582,7 @@ NIVEL36:
 	.byte ROCA,    173, 34, 11
 	.byte ROCA,     93, 32, 11
 	.byte ROCA,     30, 30, 11
+	.byte SALIDAD,  42, 39, 15, 8
 	.byte SALIZQU,   0,  2, 11
 	.byte SALARRI,  36,  2,  4
 	.byte BLOQUE,    0,  1,  9, 36,  2
@@ -636,10 +638,41 @@ NIVEL40:
 	.byte DELAY, 80, 40
 	.byte FIN_NIVEL	
 NIVEL41:
-	.byte JUGADOR, 198,222
+	.byte JUGADOR, 188,222
+	.byte ROCABMS,  30, 30, 12
+	.byte ROCA,    228, 34, 11
+	.byte ROCA,    138, 32, 11
+	.byte ROCA,     30, 46, 17
+	.byte ROCA,     80, 30, 14
+	.byte SALDERE,  39,  1,  7
+	.byte SALIDAI,  46,  0,  1,  6
+	.byte BMONEDAS,  1,  1, 15, 10,  8
+	.byte BMONEDAS, 24,  1, 15,  8,  8
 	.byte SALIENTE, 28, 19,  8, 12,  2, LEFT  ,UP
 	.byte BLOQUE,   28, 18,  8, 12,  6
 	.byte ESTALACT, 10,  0,  8, 24, DOWN
 	.byte SALIENTE,  0, 24,  8, 20,  4, RIGHT ,UP
 	.byte DELAY, 80, 40
-	.byte FIN_NIVEL		
+	.byte FIN_NIVEL
+NIVEL42:
+	.byte JUGADOR, 188,222
+	.byte ROCABMS,  45, 30, 18
+	.byte ROCA,    218, 34, 19
+	.byte ROCA,    142, 32, 24
+	.byte SALIDAI,  43,  0,  1,  3
+	.byte BMONEDAS,  5,  4, 15,  7,  4
+	.byte BMONEDAS, 15, 12, 15,  7,  2
+	.byte BMONEDAS, 25, 16, 15,  7,  3
+	.byte BLOQUE,    0, 18,  8, 34,  2
+	.byte BLOQUE,    0, 13,  8, 24,  2
+	.byte BLOQUE,   28, 13,  8, 12,  2
+	.byte BLOQUE,    0,  8,  8, 14,  2
+	.byte BLOQUE,   18,  8,  8, 22,  2
+	.byte BLOQUE,    0,  3,  8,  5,  2
+	.byte BLOQUE,    9,  3,  8, 31,  2
+	.byte BLOQUE,   38,  0,  8,  2, 23
+	.byte BLOQUE,    0,  4,  8,  2, 19
+	.byte BTESOROS, 19, 12, 11,  3,  1
+	.byte DELAY, 110, 50
+	//.byte DELAY, 255, 50
+	.byte FIN_NIVEL			
