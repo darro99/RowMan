@@ -674,5 +674,31 @@ NIVEL42:
 	.byte BLOQUE,    0,  4,  8,  2, 19
 	.byte BTESOROS, 19, 12, 11,  3,  1
 	.byte DELAY, 110, 50
-	//.byte DELAY, 255, 50
-	.byte FIN_NIVEL			
+	.byte FIN_NIVEL
+NIVEL43:
+	.byte JUGADOR, 188,222
+	.byte SALDERE,  39,  1, 22
+	.byte BMONEDAS,  1,  1, 15, 19, 11
+	.byte SALIENTE, 10,  8, 15,  8,  2, LEFT  ,UP
+	.byte BLOQUE,   18,  1, 15,  6,  6
+	.byte SALIENTE, 23,  8, 15,  8,  2, RIGHT ,UP
+	.byte BLOQUE,   10,  6, 15, 21,  6
+	.byte BLOQUE,   10, 12, 15,  6,  6
+	.byte BLOQUE,   18, 12, 15,  5,  6
+	.byte BLOQUE,   25, 12, 15,  6,  6
+	.byte BTESOROS, 17,  5, 11,  2,  2
+	.byte TESORO,	18,	 5
+	.byte MONEDA,	18,	 6
+	.byte MONEDA,	18,	 7
+	.byte MONEDA,	19,	 7
+	.byte TESORO,	17,	 6
+	.byte MONEDA,	19,	 6
+	.byte BTESOROS, 23,  5, 11,  2,  2
+	.byte TESORO,	24,	 5
+	.byte TESORO,	23,	 6
+	.byte MONEDA,	24,	 6
+	.byte MONEDA,	25,	 6
+	.byte MONEDA,	24,	 7
+	.byte MONEDA,	25,	 7						
+	.byte DELAY, 255, 255
+	.byte FIN_NIVEL

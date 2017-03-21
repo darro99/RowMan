@@ -22,6 +22,7 @@
 
 .import source "rocas.asm"
 
+
 :BasicUpstart2(main)
 
 //Sprites
@@ -39,10 +40,8 @@ myDataChars: .fill dataChars.getSize(), dataChars.get(i)
 .pc = $8000
 .import source "niveles.asm"
 
-
 main:
-	
-    sei   
+       
     lda #0
     sta BACKGROUND
     sta BORDER
@@ -54,13 +53,13 @@ main:
     ldy #NUMVIDAS
     sty vars_game.vidas
    
-	lda #41
+	lda #43
 	sta vars_game.nivel
 	
 	jsr gen_niveles
 	jsr init_agua
 		
-
+	sei
 	ldy #$7f   // $7f = %01111111
   	sty $dc0d  // Turn off CIAs Timer interrupts ($7f = %01111111)
   	sty $dd0d  // Turn off CIAs Timer interrupts ($7f = %01111111)
@@ -97,3 +96,4 @@ end_irq:
 	
 //noends:
 //jmp noends 	
+
