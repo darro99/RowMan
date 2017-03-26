@@ -10,7 +10,7 @@ pantallas:
 	.word NIVEL27, NIVEL28, NIVEL29, NIVEL30, NIVEL31
 	.word NIVEL32, NIVEL33, NIVEL34, NIVEL35, NIVEL36
 	.word NIVEL37, NIVEL38, NIVEL39, NIVEL40, NIVEL41
-	.word NIVEL42, NIVEL43
+	.word NIVEL42, NIVEL43, NIVEL44
 
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
@@ -47,15 +47,16 @@ NIVEL1:
 	.byte FIN_NIVEL
 NIVEL2:
 	.byte JUGADOR, 176,222
-	.byte SALARRI,  3, 1, 32
-	.byte BLOQUE, 	37,  0, 11,  3, 23
-	.byte BLOQUE, 	 0,  0, 11,  3, 23
+	.byte SALARRI,   1, 1, 36
+	.byte BLOQUE, 	39,  0, 11,  1, 23
+	.byte BLOQUE, 	 0,  0, 11,  1, 23
 	.byte ESTALACT, 13, 12, 11, 14, UP
 	.byte BLOQUE, 	13, 11, 11, 14,  5
 	.byte BMONEDAS, 29,  2, 15,  4, 10
+	.byte BTESOROS, 30,  3, 11,  4, 10
 	.byte BTESOROS, 14, 18, 11,  7,  2
-	.byte BMONEDAS,  4,  2, 15,  4, 10			
-	.byte TESORO,	20,	4  //Representa el 1UP
+	.byte BMONEDAS,  4,  2, 15,  4, 10
+	.byte BTESOROS,  3,  3, 11,  4, 10			
 	.byte DELAY, 255, 50
 	.byte FIN_NIVEL
 NIVEL3:
@@ -382,17 +383,15 @@ NIVEL23:
 NIVEL24: //ESPECIAL COMMODORE
 	.byte JUGADOR,  70,222
 	.byte SALARRI,   0,  1, 38
-	.byte BLOQUE,   16,  1, 14, 6, 5
-	.byte SALIENTE,  8,  8, 14, 8, 2, LEFT ,UP
-	.byte BLOQUE,    8,  7, 14, 8, 7
-	.byte SALIENTE,  8, 14, 14, 8, 2, LEFT ,DOWN
-	.byte BLOQUE,   16, 15, 14, 6, 5
-	.byte SALIENTE, 22,  6, 14, 6, 2, RIGHT ,DOWN
-	.byte SALIENTE, 22, 16, 10, 6, 2, RIGHT ,UP
-	.byte BMONEDAS,  1,  2, 15, 3, 10
-	.byte BMONEDAS, 30,  2, 15, 5, 10
-	.byte BTESOROS, 24, 17, 11, 3,  3			
-	.byte BTESOROS, 24,  2, 11, 3,  3
+	.byte BLOQUE,   10,  1, 14, 6, 5
+	.byte SALIENTE,  2,  8, 14, 8, 2, LEFT ,UP
+	.byte BLOQUE,    2,  7, 14, 8, 7
+	.byte SALIENTE,  2, 14, 14, 8, 2, LEFT ,DOWN
+	.byte BLOQUE,   10, 15, 14, 6, 5
+	.byte SALIENTE, 16,  6, 14, 6, 2, RIGHT ,DOWN
+	.byte SALIENTE, 16, 16, 10, 6, 2, RIGHT ,UP
+	.byte BMONEDAS, 23,  2, 15, 8, 11
+	.byte BTESOROS, 24,  3, 11, 8, 11			
 	.byte DELAY, 255, 255
 	.byte FIN_NIVEL	
 NIVEL25:
@@ -678,27 +677,49 @@ NIVEL42:
 NIVEL43:
 	.byte JUGADOR, 188,222
 	.byte SALDERE,  39,  1, 22
-	.byte BMONEDAS,  1,  1, 15, 19, 11
-	.byte SALIENTE, 10,  8, 15,  8,  2, LEFT  ,UP
-	.byte BLOQUE,   18,  1, 15,  6,  6
-	.byte SALIENTE, 23,  8, 15,  8,  2, RIGHT ,UP
-	.byte BLOQUE,   10,  6, 15, 21,  6
-	.byte BLOQUE,   10, 12, 15,  6,  6
-	.byte BLOQUE,   18, 12, 15,  5,  6
-	.byte BLOQUE,   25, 12, 15,  6,  6
+	.byte BMONEDAS, 26,  1, 15,  6, 11
+	.byte BMONEDAS, 27,  2, 15,  6, 11
+	.byte SALIENTE,  4,  8, 15,  8,  2, LEFT  ,UP
+	.byte BLOQUE,   12,  1, 15,  6,  6
+	.byte SALIENTE, 17,  8, 15,  8,  2, RIGHT ,UP
+	.byte BLOQUE,    4,  6, 15, 21,  6
+	.byte BLOQUE,    4, 12, 15,  6,  6
+	.byte BLOQUE,   12, 12, 15,  5,  6
+	.byte BLOQUE,   19, 12, 15,  6,  6
+	.byte BTESOROS, 11,  5, 11,  2,  2
+	.byte TESORO,	12,	 5
+	.byte MONEDA,	12,	 6
+	.byte MONEDA,	12,	 7
+	.byte MONEDA,	13,	 7
+	.byte TESORO,	11,	 6
+	.byte MONEDA,	13,	 6
 	.byte BTESOROS, 17,  5, 11,  2,  2
 	.byte TESORO,	18,	 5
-	.byte MONEDA,	18,	 6
-	.byte MONEDA,	18,	 7
-	.byte MONEDA,	19,	 7
 	.byte TESORO,	17,	 6
 	.byte MONEDA,	19,	 6
-	.byte BTESOROS, 23,  5, 11,  2,  2
-	.byte TESORO,	24,	 5
-	.byte TESORO,	23,	 6
-	.byte MONEDA,	24,	 6
-	.byte MONEDA,	25,	 6
-	.byte MONEDA,	24,	 7
-	.byte MONEDA,	25,	 7						
+	.byte MONEDA,	18,	 6
+	.byte MONEDA,	19,	 7
+	.byte MONEDA,	18,	 7						
 	.byte DELAY, 255, 255
+	.byte FIN_NIVEL
+NIVEL44:
+	.byte JUGADOR,  42,222
+	.byte ROCABMS,  45, 30,  7
+	.byte ROCA,     85, 30,  8
+	.byte ROCA   , 118, 50, 14
+	.byte ROCA,    155, 30,  8
+	.byte ROCA   , 185, 50, 14
+	.byte ROCA,    230, 30,  8
+	.byte SALDERE,  39,  1, 14
+	.byte BMONEDAS,  7,  3, 15,  2,  9
+	.byte BTESOROS, 16,  3, 11,  2,  9
+	.byte BMONEDAS, 25,  3, 15,  2,  7
+	.byte BTESOROS, 34,  3, 11,  2,  7
+	.byte ESTALACT,  0,  0,  8,  8, DOWN
+	.byte ESTALACT,  9,  0,  8,  8, DOWN
+	.byte ESTALACT, 18,  0,  8,  8, DOWN
+	.byte ESTALACT, 27,  0,  8,  8, DOWN
+	.byte SALIENTE, 36,  0,  8,  4,  2, LEFT  ,DOWN
+	.byte BLOQUE,   27, 15,  8, 13,  8
+	.byte DELAY, 100, 60
 	.byte FIN_NIVEL
