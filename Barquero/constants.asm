@@ -68,7 +68,7 @@
 .const SALIDAI	  = 14		//Salida hacia la izquierda y una pantalla indicada
 .const BTESOROS   = 15		//Bloque de monedillas
 .const BMONEDAS   = 16		//Bloque de tesoros
-.const FIN_NIVEL  = 255		//Fin de nivel
+.const FIN_NIVEL  = 17		//Fin de nivel
 //Carcateres para formar la cueva
 .const CHAR_CAVE_ID_RIGHT	   = 76//95		// '\'
 .const CHAR_CAVE_ID_LEFT	   = 78//233	// '/'
@@ -79,6 +79,28 @@
 .const CHAR_CAVE_SAL_A		   = 98
 .const CHAR_CAVE_SAL_I		   = 99
 .const CHAR_CAVE_SAL_D		   = 100
+
+//Array de las acciones para formar los niveles
+.const ACTIONS = List().add(
+  kk,	
+  carga_saliente,
+  carga_estalac,
+  carga_bloque,
+  carga_jugador,
+  carga_delay,
+  carga_moneda,
+  carga_tesoro,
+  carga_roca,
+  carga_roca_bms,
+  carga_sal_arr,
+  carga_sal_izq,
+  carga_sal_der,
+  carga_sal_dp,
+  carga_sal_ip,
+  carga_btesoros,
+  carga_bmonedas,
+  fin_nivel
+).lock()	
 
 .const CHAR_VACIO			   = 74//32
 .const CHAR_MONEDA			   = 96

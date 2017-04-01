@@ -34,74 +34,45 @@ gen_niveles:
 niv_prin:
 	iny
 	lda (ZEROPAGE_POINTER_3), y
-	cmp #SALIENTE
-	bne !siguiente+
-	jmp carga_saliente
-!siguiente:
-	cmp #ESTALACT
-	bne !siguiente+
-	jmp carga_estalac
-!siguiente:	
-	cmp #BLOQUE
-	bne !siguiente+
-	jmp carga_bloque
-!siguiente:
-	cmp #MONEDA
-	bne !siguiente+
-	jmp carga_moneda
-!siguiente:
-	cmp #BMONEDAS
-	bne !siguiente+
-	jmp carga_bmonedas	
-!siguiente:
-	cmp #TESORO
-	bne !siguiente+
-	jmp carga_tesoro
-!siguiente:
-	cmp #BTESOROS
-	bne !siguiente+
-	jmp carga_btesoros		
-!siguiente:	
-	cmp #JUGADOR
-	bne !siguiente+
-	jmp carga_jugador
-!siguiente:	
-	cmp #ROCA
-	bne !siguiente+
-	jmp carga_roca
-!siguiente:	
-	cmp #ROCABMS
-	bne !siguiente+
-	jmp carga_roca_bms
-!siguiente:
-	cmp #SALARRI
-	bne !siguiente+
-	jmp carga_sal_arr
-!siguiente:
-	cmp #SALIZQU
-	bne !siguiente+
-	jmp carga_sal_izq
-!siguiente:
-	cmp #SALDERE
-	bne !siguiente+
-	jmp carga_sal_der
+	tax
+	:rti_jump_using_x(levels_actions)
 	
-!siguiente:
-	cmp #SALIDAD
-	bne !siguiente+
-	jmp carga_sal_dp
-!siguiente:
-	cmp #SALIDAI
-	bne !siguiente+
-	jmp carga_sal_ip	
-						
-!siguiente:	
-	cmp #DELAY
-	bne !siguiente+
-	jmp carga_delay
-!siguiente:	
-	cmp #FIN_NIVEL
-	bne niv_prin
+
+//DefiniciOn de las acciones para los niveles
+levels_actions: :define_rti_jump_table(ACTIONS)
+
+//Macro para las redirecciones de la tabla de funciones
+//Fuente 64bites.com
+//ParAmetro: Tabla de funciones
+.macro rti_jump_using_x(rti_jump_table) {
+  lda rti_jump_table.actions_msb, X
+  pha
+  lda rti_jump_table.actions_lsb, X
+  pha
+  php
+  rti
+}
+
+//Macro para el relleno de la tabla de funciones de 
+//creaciOn de niveles
+//Fuente 64bites.com
+//ParAmetro: Array de funciones
+.macro define_rti_jump_table(actions) {
+  actions_lsb:
+    .fill actions.size(), <actions.get(i)
+
+  actions_msb:
+    .fill actions.size(), >actions.get(i)
+}
+
+//////////////////////////////////////////////////////////
+//         Acciones para la formaciOn de niveles        //
+//////////////////////////////////////////////////////////
+	
+kk:
+	rts
+	
+fin_nivel:	
 	lda #0
 	sta sprites.puntero_roca
 	rts
@@ -176,7 +147,7 @@ carga_jugador:
 	sta sprites.dir_barca
 	lda SP_COLI
 	and #$00
-	sta SP_COLI
+	sta SP_COLI	
 	jmp niv_prin
 	
 carga_delay:
@@ -337,4 +308,4 @@ carga_sal_sal:
 	iny
 	lda (ZEROPAGE_POINTER_3),y	//Carga la pantalla que queremos
 	sta vars_cueva.sentido
-	rts						
+	rts			
