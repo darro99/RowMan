@@ -10,7 +10,8 @@ pantallas:
 	.word NIVEL27, NIVEL28, NIVEL29, NIVEL30, NIVEL31
 	.word NIVEL32, NIVEL33, NIVEL34, NIVEL35, NIVEL36
 	.word NIVEL37, NIVEL38, NIVEL39, NIVEL40, NIVEL41
-	.word NIVEL42, NIVEL43, NIVEL44
+	.word NIVEL42, NIVEL43, NIVEL44, NIVEL45, NIVEL46
+	.word NIVEL47, NIVEL48
 
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
@@ -723,3 +724,53 @@ NIVEL44:
 	.byte BLOQUE,   27, 15,  8, 13,  8
 	.byte DELAY, 100, 60
 	.byte FIN_NIVEL
+NIVEL45:
+	.byte JUGADOR,  102,222
+	.byte ROCABMS,  15, 30, 17
+	.byte ROCA,     85, 30,  8
+	.byte ROCA   , 118, 50, 14
+	.byte ROCA,    155, 30,  8
+	.byte ROCA   , 185, 50, 14
+	.byte ROCA,    230, 30,  8
+	.byte SALARRI,  22,  1,  9
+	.byte BLOQUE,    0,  0,  8,  7,  23
+	.byte BLOQUE,   33,  0,  8,  7,  23
+	.byte ESTALACT, 15,  0,  8, 10, DOWN
+	.byte ESTALACT,  7,  0,  8,  8, DOWN
+	.byte BMONEDAS,  7, 16, 15,  8,  3
+	.byte BMONEDAS, 16, 13, 15,  8,  3
+	.byte BMONEDAS, 25, 10, 15,  4,  3
+	.byte BMONEDAS, 26,  3, 15,  4,  7
+	.byte BTESOROS, 25, 10, 11,  4,  3
+	.byte BTESOROS, 15, 16, 11,  4,  2
+	.byte DELAY, 100, 60
+	.byte FIN_NIVEL	
+NIVEL46:
+	.byte JUGADOR,  30,222
+	.byte ROCA,     70, 30,  8
+	.byte ROCA   , 118, 50, 14
+	.byte ROCA,    175, 30, 12
+	.byte ROCA,    230, 25, 16
+	.byte SALIDAI, 49,  39,  1,  9
+	.byte BMONEDAS,  7, 16, 15,  5,  3
+	.byte BMONEDAS, 14, 13, 15,  5,  3
+	.byte BMONEDAS, 21, 10, 15,  5,  3
+	.byte BMONEDAS, 22,  3, 15,  8,  5
+	.byte SALIENTE,  8, 24,  8,  6,  2, LEFT  ,UP
+	.byte SALIENTE, 14, 20,  8,  6,  2, LEFT  ,UP
+	.byte SALIENTE, 20, 16,  8,  6,  2, LEFT  ,UP
+	.byte SALIENTE, 26, 12,  8,  6,  2, LEFT  ,UP
+	.byte SALIENTE, 32,  8,  8,  6,  2, LEFT  ,UP
+	.byte BLOQUE,   14, 19,  8, 26,  4
+	.byte BLOQUE,   20, 15,  8, 20,  4
+	.byte BLOQUE,   26, 11,  8, 14,  4
+	.byte BLOQUE,   32,  7,  8,  8,  4
+	.byte BLOQUE,   38,  3,  8,  2,  4
+	.byte BLOQUE,    0,  0,  8, 39,  1
+	.byte DELAY, 100, 60
+	.byte FIN_NIVEL
+NIVEL47: //Reservado
+NIVEL48:		
+	.byte JUGADOR,  30,222
+	.byte DELAY, 100, 60
+	.byte FIN_NIVEL	

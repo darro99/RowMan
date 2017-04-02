@@ -70,6 +70,8 @@ gameo_prin:
 	ldx vars_game.fire
 	cpx #0
 	beq fin_principal
+	ldx #0
+	stx BORDER
 	ldy #NUMVIDAS
     sty vars_game.vidas
 	lda #4					//Se reinicia el juego,

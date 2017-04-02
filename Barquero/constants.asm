@@ -128,7 +128,7 @@
 .const SP_PBRIGHT  = $A9	//Inicio del puntero de la barca hacia la derecha
 .const SP_PBDEAD   = $AC	//Inicio del puntero de la barca hundida
 .const SP_PROCK    = $AE	//Inicio del puntero de la roca
-.const SP_PROCK_FIN= $B2	//Fin del puntero de la roca
+.const SP_PROCK_FIN= $B1	//Fin del puntero de la roca
 .const SP_MCOLOR   = $d01c	//DirecciOn para asignar el multicolor a los sprites
 .const SP_COLOR1   = $d025	//DirecciOn para asignar el color 1 de los sprites multicolores
 .const SP_COLOR2   = $d026	//DirecciOn para asignar el color 2 de los sprites multicolores
