@@ -1,4 +1,26 @@
 
+
+
+.var music = LoadSid("bin/Bambam.sid")
+:BasicUpstart2(main)
+
+//.pc=$1000 "Music"
+//.import binary "bin/ode to 64.bin"
+
+//Sprites
+.pc = $2980
+//.import binary "bin/sprites.bin"
+.import binary "bin/Sprites.raw"
+
+//UGDs (GrAficos definidos por el usuario)
+//.var dataChars = LoadBinary("bin/CHARS.RAW")
+.var dataChars = LoadBinary("bin/charset.bin")
+.pc = $3800
+myDataChars: .fill dataChars.getSize(), dataChars.get(i)
+
+
+
+.pc = $4000
 //Importa las constantes
 .import source "constants.asm"
 
@@ -21,26 +43,12 @@
 .import source "general.asm"
 
 .import source "rocas.asm"
-
-
-:BasicUpstart2(main)
-
-//Sprites
-.pc = $2980
-.import binary "bin/sprites.bin"
-
-//UGDs (GrAficos definidos por el usuario)
-.var dataChars = LoadBinary("bin/CHARS.RAW")
-.pc = $3800
-myDataChars: .fill dataChars.getSize(), dataChars.get(i)
-
-.pc = $C000
-.import source "tabla_txt.asm"
-
-.pc = $8000
-.import source "niveles.asm"
-
 main:
+       
+    ldx #0
+	ldy #0
+	lda #music.startSong-1
+	jsr music.init   
        
     lda #0
     sta BACKGROUND
@@ -53,7 +61,7 @@ main:
     ldy #NUMVIDAS
     sty vars_game.vidas
    
-	lda #44
+	lda #4
 	sta vars_game.nivel
 	
 	jsr gen_niveles
@@ -85,15 +93,25 @@ main:
 //================================
 
 irq: 
+	jsr musica
 	jsr joystick
 	jsr llenado
 	jsr rocas
 	jsr principal
 	jsr cmp_coli
 	
+	
 end_irq:
     jmp $ea31      // return to Kernel routine	
 	
+.pc=music.location "Music"
+.fill music.size, music.getData(i)
+	
+.pc = $C000
+.import source "tabla_txt.asm"
+
+.pc = $8000
+.import source "niveles.asm"	
 //noends:
 //jmp noends 	
 
