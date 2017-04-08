@@ -18,7 +18,7 @@
 .const MUERTO 	= 1
 .const GAMEOVER = 2
 
-.const NUMVIDAS = 9
+.const NUMVIDAS = 2
 
 //Variables para el pintado y animaciOn del agua
 .namespace vars_agua {
@@ -28,8 +28,8 @@
 	.label cont	  = $0A
 	.label CONT	  = $27
 }
-.const CHAR_AGUA			   = 80//98
-.const CHAR_AGUA_PROF		   = 81//102
+.const CHAR_AGUA			   = 86//98
+.const CHAR_AGUA_PROF		   = 85//102
 
 
 //Variables para el pintado de las cueva
@@ -74,8 +74,8 @@
 .const CHAR_CAVE_ID_LEFT	   = 78//233	// '/'
 .const CHAR_CAVE_DI_RIGHT	   = 77//105	// '\'
 .const CHAR_CAVE_DI_LEFT	   = 79//223	// '/'
-.const CHAR_CAVE_INIT		   = 82		//Caracter incio de las cuevas
-.const CHAR_CAVE_END		   = 96		//Caracter + 1 fin de las cuevas
+.const CHAR_CAVE_INIT		   = 80		//Caracter incio de las cuevas
+.const CHAR_CAVE_END		   = 83		//Caracter + 1 fin de las cuevas
 .const CHAR_CAVE_SAL_A		   = 98
 .const CHAR_CAVE_SAL_I		   = 99
 .const CHAR_CAVE_SAL_D		   = 100
@@ -105,7 +105,8 @@
 .const CHAR_VACIO			   = 74//32
 .const CHAR_MONEDA			   = 96
 .const CHAR_TESORO			   = 97
-.const CHAR_FONDO			   = 101
+.const CHAR_FONDO			   = 83
+.const CHAR_FONDO_FIN	 	   = 84
 
 //Variables para el manejo de los sprites
 .namespace sprites{
@@ -135,6 +136,9 @@
 .const SP_BMS	   = $d010  //DirecciOn para comprobar el bit mas significativo
 .const SP_COLI	   = $d01e	//DirecciOn para comprobar colisiones entre sprites 
 
+.const joy_state   = $2C
+.const joy_p_state = $2D
+
 .const JOY_PORT2 = $dc00
 //Constantes para saber cual es movimiento del joystick
 .const JOY_UP     = %00000001
@@ -142,6 +146,7 @@
 .const JOY_LEFT   = %00000100
 .const JOY_RIGHT  = %00001000
 .const JOY_BUTTON = %00010000
+.const JOY_NEUTRAL= %00011111
 
 //placeholder for various temp .const PARAMeters
 .const PARAM1                  = $03

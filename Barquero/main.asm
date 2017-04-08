@@ -45,10 +45,7 @@ myDataChars: .fill dataChars.getSize(), dataChars.get(i)
 .import source "rocas.asm"
 main:
        
-    ldx #0
-	ldy #0
-	lda #music.startSong-1
-	jsr music.init   
+   
        
     lda #0
     sta BACKGROUND
@@ -66,42 +63,59 @@ main:
 	
 	jsr gen_niveles
 	jsr init_agua
+	
+	ldx #0
+	ldy #0
+	lda #music.startSong-1
+	jsr music.init  
+	
+	//ldx #VIVO
+	//stx vars_game.is_dead 
 		
-	sei
-	ldy #$7f   // $7f = %01111111
-  	sty $dc0d  // Turn off CIAs Timer interrupts ($7f = %01111111)
-  	sty $dd0d  // Turn off CIAs Timer interrupts ($7f = %01111111)
-  	lda $dc0d  // by reading $dc0d and $dd0d we cancel all CIA-IRQs in queue/unprocessed
-  	lda $dd0d  // by reading $dc0d and $dd0d we cancel all CIA-IRQs in queue/unprocessed
-   
-  	lda #$01   // Set Interrupt Request Mask...
-  	sta $d01a  // ...we want IRQ by Rasterbeam (%00000001)
+	lda #<irq
+	sta $0314
+	lda #>irq
+	sta $0315
+	asl $d019
+	lda #$7b
+	sta $dc0d
+	lda #$81
+	sta $d01a
+	lda #$1b
+	sta $d011
+	lda #$80
+	sta $d012
+	cli
+	this:
+	jmp this
 
-  	lda #<irq  // point IRQ Vector to our custom irq routine
-  	ldx #>irq 
-  	sta $0314   // store in $314/$315
-  	stx $0315   
-
-  	lda #$00   // trigger interrupt at row zero
-  	sta $d012
-
-  	cli        // clear interrupt disable flag   
-  	jmp *
+  	
  	
  //================================
 // Our custom interrupt routines 
 //================================
 
 irq: 
-	jsr musica
+	jsr get_dead
+	cpx #GAMEOVER
+	bne end_irq
+	jsr joystick
+	jsr principal
+	asl $d019
+	jsr music.play
+	pla
+	tay
+	pla
+	tax
+	pla
+	rti
+
+end_irq:
 	jsr joystick
 	jsr llenado
 	jsr rocas
 	jsr principal
 	jsr cmp_coli
-	
-	
-end_irq:
     jmp $ea31      // return to Kernel routine	
 	
 .pc=music.location "Music"

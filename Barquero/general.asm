@@ -46,8 +46,7 @@ game_over:
 	jsr init_agua
 	ldx #0
 	stx vars_game.fire
-	ldy #255
-	sty PARAM1
+	jsr music.init  
 	rts	
 	
 principal:
@@ -70,6 +69,7 @@ gameo_prin:
 	ldx vars_game.fire
 	cpx #0
 	beq fin_principal
+	jsr fin_musica
 	ldx #0
 	stx BORDER
 	ldy #NUMVIDAS
@@ -103,3 +103,15 @@ salto:
     lda #1 
     sta PARAM3          //Se asigna 1 (El acarreo)         
     jmp haz_puntos 	
+
+fin_musica:
+	ldx #0
+loop_f_musica:	
+	lda #0
+	sta $D400,x
+	inx
+	cpx #25
+	bne loop_f_musica
+	lda #5
+	sta BORDER
+	rts    

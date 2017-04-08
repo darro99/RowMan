@@ -6,17 +6,23 @@ gen_niveles:
     sta vars_game.fire 		//Se resetea el disparo
 	sta sprites.puntero_roca
 	sta sprites.num_roca
+	
+	sta joy_state			//Estado del joystick
+	ldy #JOY_NEUTRAL
+	sta joy_p_state
+	
 	ldy #1					//Se resetea el retardo de la barca
 	sty sprites.delay_barca
 	sty sprites.desp_roca
 	ldx #24					//Se marca el principio del nivel de agua
 	stx vars_agua.linea
 	
-	lda #CHAR_FONDO
-	sta PARAM1
-	lda #14
-	sta PARAM2
-	jsr borra_pant		//Borra la pantalla
+	//lda #CHAR_FONDO
+	//sta PARAM1
+	//lda #14
+	//sta PARAM2
+	//jsr borra_pant		//Borra la pantalla
+	jsr fondo_pant
 	
 	jsr marcadores		//Regenera los marcadores
 	ldx #CHAR_CAVE_INIT	//Se inicializa el caracter para formar cuevas

@@ -114,6 +114,30 @@ loop_pant:
 	bne loop_pant
 	rts
 
+fondo_pant:
+	ldx #0
+cambia_fondo:	
+	ldy #CHAR_FONDO	
+loop_fondo:	
+	tya
+	sta $0400,x
+	sta $0500,x
+	sta $0600,x
+	sta $0700,x
+	lda #14
+	sta $d800,x
+	sta $d900,x
+	sta $da00,x
+	sta $db00,x
+	inx
+	beq fin_fondo
+	cpy #CHAR_FONDO_FIN
+	beq cambia_fondo
+	iny
+	jmp loop_fondo 
+fin_fondo:
+	rts	
+
 //Funcio para borrar sOlo la lInea de la puntuaciOn
 borra_lin_p:
 	ldx #39
@@ -183,6 +207,10 @@ no_com_down:
 	cmp #CHAR_FONDO
 	bne !sig_caracter+
 	rts
+!sig_caracter:	
+	cmp #CHAR_FONDO_FIN
+	bne !sig_caracter+
+	rts	
 !sig_caracter:
 	jsr muerte	 
 	rts

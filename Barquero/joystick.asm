@@ -10,7 +10,7 @@ joystick:
 	bne end_joy
 	lda #0
 	sta sprites.delay_barca
-		
+	
 	lda JOY_PORT2 
   	and #JOY_LEFT
  	bne !no_action+
@@ -34,11 +34,15 @@ end_joy:
 	rts	
 	
 comp_fire:
-	cpx #GAMEOVER
-	bne comp_fire2 
-	dec PARAM1
-	bne comp_f_end
-comp_fire2:	
+	lda JOY_PORT2
+  	and #JOY_NEUTRAL
+  	sta joy_state
+  	
+  	lda joy_p_state
+  	eor #JOY_NEUTRAL
+  	beq can_handle_joystick
+	jmp comp_f_end
+can_handle_joystick:
 	lda vars_game.fire
 	cmp #1
 	beq comp_f_end
@@ -48,8 +52,8 @@ comp_fire2:
 	lda #1
 	sta vars_game.fire
 comp_f_end:	
-	lda #0
-	sta JOY_PORT2
+	ldx joy_state
+	stx joy_p_state
 	rts
 	
 mov_up:
