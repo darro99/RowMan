@@ -31,18 +31,8 @@ game_over:
 	sta SP_POSITION + 1 	//Oculta la barca
 	jsr borra_pant
 	jsr oculta_rocas
-	lda #$C0		//Escribe en la pantalla el literal 'GAME OVER'
-	sta ZEROPAGE_POINTER_3 + 1
-	lda #$64			
-	sta ZEROPAGE_POINTER_3
-	lda #16
-	sta PARAM1
-	lda #12
-	sta PARAM2
-	lda #255
-	sta ZEROPAGE_POINTER_4
-	jsr get_linea
-	jsr print_txt
+	//Escribe en la pantalla el literal 'GAME OVER'
+	:escribe($C0,$64,16,12) 
 	jsr init_agua
 	ldx #0
 	stx vars_game.fire
@@ -53,8 +43,12 @@ principal:
 	ldx vars_game.is_dead
 	cpx #VIVO
 	beq fin_principal
+	cpx #INICIO
+	beq gameo_prin
+	cpx #GAMEOVER
+	beq comp_go
 	cpx #MUERTO
-	bne gameo_prin
+	bne fin_principal
 	ldx vars_game.fire
 	cpx #0
 	beq fin_principal
@@ -65,13 +59,27 @@ principal:
 	ldx #0
 	stx BORDER
 	rts
+	
+comp_go:
+	ldx vars_game.fire
+	cpx #0
+	beq fin_principal
+	ldx #INICIO
+	stx vars_game.is_dead
+	ldx #0
+	stx vars_game.fire  
+	jsr pant_init
+	rts		
+	
 gameo_prin:
 	ldx vars_game.fire
 	cpx #0
 	beq fin_principal
+	
 	jsr fin_musica
 	ldx #0
 	stx BORDER
+	
 	ldy #NUMVIDAS
     sty vars_game.vidas
 	lda #4					//Se reinicia el juego,
@@ -114,4 +122,44 @@ loop_f_musica:
 	bne loop_f_musica
 	lda #5
 	sta BORDER
-	rts    
+	rts
+	
+pant_init:
+	lda #CHAR_VACIO
+	sta PARAM1
+	lda #1
+	sta PARAM2
+	jsr borra_pant
+	
+	lda #INICIO
+	sta vars_game.is_dead  
+	lda #0
+	sta vars_game.nivel
+	jsr solo_init
+	jsr init_agua
+	
+	:escribe($C0, $6E, 17,  5)	//ROWMAN
+	:escribe($C0, $75,  9,  8)	//Programado por
+	:escribe($C0, $8C,  9, 12)	//GrAficos por
+	:escribe($C0, $A8,  9, 16)	//MUsica por
+	:escribe($C0, $A3, 18, 19)	//2017
+	:escribe($C0, $C0,  0,  0)	//VersiOn
+	
+	ldx #0
+	stx vars_game.fire  
+	rts
+	
+.macro escribe(byte_bajo, byte_alto, x, y) {
+	lda #byte_bajo		//Escribe en la pantalla el literal 'GAME OVER'
+	sta ZEROPAGE_POINTER_3 + 1
+	lda #byte_alto			
+	sta ZEROPAGE_POINTER_3
+	lda #x
+	sta PARAM1
+	lda #y
+	sta PARAM2
+	lda #255
+	sta ZEROPAGE_POINTER_4
+	jsr get_linea
+	jsr print_txt
+}		    

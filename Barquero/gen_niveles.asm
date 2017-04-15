@@ -25,9 +25,10 @@ gen_niveles:
 	jsr fondo_pant
 	
 	jsr marcadores		//Regenera los marcadores
+
+solo_init:
 	ldx #CHAR_CAVE_INIT	//Se inicializa el caracter para formar cuevas
 	stx vars_cueva.car_actu
-
 	lda vars_game.nivel	//Empieza la lectura del nivel
 	asl					//Se multiplica por dos, por eso los niveles empiezan en cero
 	tax 
@@ -136,6 +137,9 @@ carga_gen:
 	sta vars_cueva.ancho
 	rts	
 
+carga_jugador_bms:
+	jsr chg_bms
+	
 carga_jugador:
 	iny
 	lda (ZEROPAGE_POINTER_3),y

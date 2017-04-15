@@ -160,9 +160,13 @@ get_coorde_pant:
 	lsr
 	sta PARAM1
 	
-	lda SP_BMS
+	
+	cpx #0
+	bne suma_coor
+	lda SP_BMS			//Esto es sOlo para el sprite 0	
 	lsr
 	bcc get_x_end
+suma_coor:	
 	lda PARAM1
 	adc #30
 	sta PARAM1	

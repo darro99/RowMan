@@ -16,9 +16,10 @@
 }
 .const VIVO 	= 0
 .const MUERTO 	= 1
-.const GAMEOVER = 2
+.const INICIO   = 2
+.const GAMEOVER = 3
 
-.const NUMVIDAS = 2
+.const NUMVIDAS = 9
 
 //Variables para el pintado y animaciOn del agua
 .namespace vars_agua {
@@ -69,6 +70,7 @@
 .const BTESOROS   = 15		//Bloque de monedillas
 .const BMONEDAS   = 16		//Bloque de tesoros
 .const FIN_NIVEL  = 17		//Fin de nivel
+.const JUGADORBMS = 18		//Inicio del jugador con bms
 //Carcateres para formar la cueva
 .const CHAR_CAVE_ID_RIGHT	   = 76//95		// '\'
 .const CHAR_CAVE_ID_LEFT	   = 78//233	// '/'
@@ -99,7 +101,8 @@
   carga_sal_ip,
   carga_btesoros,
   carga_bmonedas,
-  fin_nivel
+  fin_nivel,
+  carga_jugador_bms
 ).lock()	
 
 .const CHAR_VACIO			   = 74//32

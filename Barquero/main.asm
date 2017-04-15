@@ -1,11 +1,7 @@
 
 
-
 .var music = LoadSid("bin/Bambam.sid")
 :BasicUpstart2(main)
-
-//.pc=$1000 "Music"
-//.import binary "bin/ode to 64.bin"
 
 //Sprites
 .pc = $2980
@@ -13,7 +9,6 @@
 .import binary "bin/Sprites.raw"
 
 //UGDs (GrAficos definidos por el usuario)
-//.var dataChars = LoadBinary("bin/CHARS.RAW")
 .var dataChars = LoadBinary("bin/charset.bin")
 .pc = $3800
 myDataChars: .fill dataChars.getSize(), dataChars.get(i)
@@ -50,28 +45,27 @@ main:
     lda #0
     sta BACKGROUND
     sta BORDER
-    sta vars_game.is_dead  
+    //sta vars_game.is_dead  
     
     jsr init_sprites
     jsr init_screen
     
-    ldy #NUMVIDAS
-    sty vars_game.vidas
-   
-	lda #4
-	sta vars_game.nivel
-	
-	jsr gen_niveles
-	jsr init_agua
+    //INCIALIZACION SIN PORTADA
+    //ldy #NUMVIDAS
+    //sty vars_game.vidas
+	//lda #51
+	//sta vars_game.nivel
+	//jsr gen_niveles
+	//jsr init_agua
+
+	//INCIALIZACION CON PORTADA
+	jsr pant_init
 	
 	ldx #0
 	ldy #0
 	lda #music.startSong-1
 	jsr music.init  
 	
-	//ldx #VIVO
-	//stx vars_game.is_dead 
-		
 	lda #<irq
 	sta $0314
 	lda #>irq
@@ -97,9 +91,11 @@ main:
 
 irq: 
 	jsr get_dead
-	cpx #GAMEOVER
-	bne end_irq
-	jsr joystick
+	cpx #INICIO
+	//bne end_irq
+	bcc end_irq
+cont_irq:	
+	jsr comp_fire
 	jsr principal
 	asl $d019
 	jsr music.play

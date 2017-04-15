@@ -11,7 +11,7 @@ pantallas:
 	.word NIVEL32, NIVEL33, NIVEL34, NIVEL35, NIVEL36
 	.word NIVEL37, NIVEL38, NIVEL39, NIVEL40, NIVEL41
 	.word NIVEL42, NIVEL43, NIVEL44, NIVEL45, NIVEL46
-	.word NIVEL47, NIVEL48
+	.word NIVEL47, NIVEL48, NIVEL49, NIVEL50, NIVEL51
 
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
@@ -31,6 +31,22 @@ pantallas:
 //DefiniciOn de niveles
 //11,11,15,15,11 Colores antiguos del nivel
 NIVEL0:
+	.byte JUGADOR, 170,222
+	.byte SALIENTE,  0,  0, 11, 14, 2, RIGHT,DOWN
+	.byte SALIENTE,  0, 24, 11, 14, 2, RIGHT,UP
+	.byte SALIENTE, 26,  0, 11, 14, 2, LEFT,DOWN
+	.byte SALIENTE, 26, 24, 11, 14, 2, LEFT,UP
+	.byte BTESOROS,  9,  7, 11, 11, 2
+	.byte BTESOROS, 10,  7, 11, 11, 2
+	.byte BTESOROS,  9, 11, 11, 11, 2
+	.byte BTESOROS, 10, 11, 11, 11, 2
+	.byte BTESOROS,  9, 15, 11, 12, 2
+	.byte BTESOROS, 10, 15, 11, 11, 2
+	.byte MONEDA,   17, 19
+	.byte MONEDA,   22, 19
+	.byte MONEDA,   16, 5
+	.byte MONEDA,   23, 5
+	.byte FIN_NIVEL
 NIVEL1:
 	.byte JUGADOR, 170,222
 	.byte ROCA,   255, 64, 36
@@ -62,7 +78,9 @@ NIVEL2:
 	.byte FIN_NIVEL
 NIVEL3:
 	.byte JUGADOR, 190,222
-	.byte ROCA,     60, 30, 45
+	.byte ROCABMS,  40, 32, 28
+	.byte ROCA,    250, 30, 24	
+	.byte ROCA,     60, 30, 28
 	.byte SALARRI,   2,  1, 34
 	.byte BMONEDAS,  2,  3, 15, 18, 7
 	.byte SALIDAI,   7,  0,  6,  5
@@ -751,7 +769,7 @@ NIVEL46:
 	.byte ROCA   , 118, 50, 14
 	.byte ROCA,    175, 30, 12
 	.byte ROCA,    230, 25, 16
-	.byte SALIDAI, 49,  39,  1,  9
+	.byte SALIDAI,  49,  39,  1,  9
 	.byte BMONEDAS,  7, 16, 15,  5,  3
 	.byte BMONEDAS, 14, 13, 15,  5,  3
 	.byte BMONEDAS, 21, 10, 15,  5,  3
@@ -771,6 +789,76 @@ NIVEL46:
 	.byte FIN_NIVEL
 NIVEL47: //Reservado
 NIVEL48:		
-	.byte JUGADOR,  30,222
+	.byte JUGADORBMS,  40,222
+	.byte ROCABMS,     15, 30,  3
+	.byte ROCA,       210, 25,  5
+	.byte ROCA,       185, 35,  8
+	.byte ROCA,       160, 28,  5
+	.byte ROCA,       130, 27,  6
+	.byte ROCA,        84, 25,  5
+	.byte SALIDAI, 46, 39,  1,  9
+	.byte SALARRI,  6,  1,  6	//SALIDA AL FINAL 4
+	.byte SALIDAD, 32,  0,  7, 16
+	.byte SALIENTE, 0,  0,  8,  8,  2, RIGHT  ,DOWN
+	.byte BLOQUE,  14,  0,  8, 26,  8
+	.byte BLOQUE,  38, 10,  8,  2, 13
+	.byte BMONEDAS, 5,  4, 15,  5, 10
+	.byte BTESOROS, 2,  9, 11, 18,  2
 	.byte DELAY, 100, 60
 	.byte FIN_NIVEL	
+NIVEL49:
+	.byte JUGADOR, 180,222
+	.byte ROCA,    225, 30, 10
+	.byte ROCA,    200, 25, 12
+	.byte ROCA,    175, 20,  8
+	.byte ROCA,    150, 25, 12
+	.byte ROCA,    123,  0, 15
+	.byte SALIZQU,   0,  7,  3
+	.byte SALIDAD,  32, 39, 11,  3 //SALIDA AL FINAL 3
+	.byte BMONEDAS,  3,  7, 15, 10,  4
+	.byte BMONEDAS, 20, 10, 15,  9,  4
+	.byte BTESOROS, 20, 18, 11,  2,  2
+	.byte ESTALACT, 13,  0,  8, 14, DOWN
+	.byte BLOQUE,   29, 13,  8, 11, 10
+	.byte BLOQUE,   29,  0,  8, 11, 10
+	.byte BLOQUE,    0,  9,  8, 11, 14
+	.byte BLOQUE,    0,  0,  8, 11,  6	
+	.byte DELAY, 100, 60
+	.byte FIN_NIVEL	
+NIVEL50:
+	.byte JUGADORBMS, 40,222
+	.byte ROCABMS,  40, 30,  6
+	.byte ROCA,    239, 34,  5
+	.byte ROCA,    190, 30,  5
+	.byte ROCA,    190, 30,  9
+	.byte ROCA,    135, 32,  5
+	.byte ROCA,     80, 31,  5
+	.byte BLOQUE,   14,  0,  8,  24, 1
+	.byte SALARRI,  18,  1,  6	//SALIDA AL FINAL 2
+	.byte SALIZQU,   0, 13,  3
+	.byte SALDERE,  39, 21,  3
+	.byte BLOQUE,   38,  0,  8,  2, 20
+	.byte SALIENTE,  0,  0,  8, 14,  2, RIGHT  ,DOWN
+	.byte SALIENTE,  0, 24,  8, 10,  2, RIGHT  ,UP	
+	.byte BMONEDAS, 19,  3, 15,  4, 10
+	.byte BMONEDAS,  6, 12, 15, 16,  3
+	.byte DELAY, 100, 60
+	.byte FIN_NIVEL
+NIVEL51:
+	.byte JUGADOR,  160,222	
+	.byte ROCABMS,  10, 38, 11
+	.byte ROCA,    239, 37, 10
+	.byte ROCA,    220, 36,  9
+	.byte ROCA,    190, 35,  8
+	.byte ROCA,    160, 34,  7
+	.byte ROCA,    135, 33,  6
+	.byte ROCA,     80, 32,  5
+	.byte BTESOROS,  5, 12, 11, 16,  5
+	.byte SALIENTE,  0, 10,  8, 14,  2, RIGHT  ,DOWN
+	.byte SALIENTE, 26, 10,  8, 14,  2, LEFT  ,DOWN
+	.byte BLOQUE,    0,  0,  8, 40, 10
+	.byte BLOQUE,    0, 12,  8,  2, 11
+	.byte BLOQUE,   38, 12,  8,  2, 11
+	.byte SALARRI,  14, 10, 10	//SALIDA AL FINAL 1
+	.byte DELAY, 100, 60
+	.byte FIN_NIVEL
