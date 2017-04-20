@@ -1,6 +1,6 @@
 joystick:
 	
-	jsr get_dead
+	ldx vars_game.is_dead
 	cpx #VIVO
 	bne comp_fire
 	

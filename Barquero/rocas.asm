@@ -1,5 +1,5 @@
 rocas:
-	jsr get_dead
+	ldx vars_game.is_dead
 	cpx #VIVO
 	bne end_rocas
 

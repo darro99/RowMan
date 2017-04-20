@@ -16,13 +16,8 @@ gen_niveles:
 	sty sprites.desp_roca
 	ldx #24					//Se marca el principio del nivel de agua
 	stx vars_agua.linea
-	
-	//lda #CHAR_FONDO
-	//sta PARAM1
-	//lda #14
-	//sta PARAM2
-	//jsr borra_pant		//Borra la pantalla
-	jsr fondo_pant
+			
+	jsr fondo_pant		//Borra la pantalla
 	
 	jsr marcadores		//Regenera los marcadores
 
@@ -48,36 +43,9 @@ niv_prin:
 //DefiniciOn de las acciones para los niveles
 levels_actions: :define_rti_jump_table(ACTIONS)
 
-//Macro para las redirecciones de la tabla de funciones
-//Fuente 64bites.com
-//ParAmetro: Tabla de funciones
-.macro rti_jump_using_x(rti_jump_table) {
-  lda rti_jump_table.actions_msb, X
-  pha
-  lda rti_jump_table.actions_lsb, X
-  pha
-  php
-  rti
-}
-
-//Macro para el relleno de la tabla de funciones de 
-//creaciOn de niveles
-//Fuente 64bites.com
-//ParAmetro: Array de funciones
-.macro define_rti_jump_table(actions) {
-  actions_lsb:
-    .fill actions.size(), <actions.get(i)
-
-  actions_msb:
-    .fill actions.size(), >actions.get(i)
-}
-
 //////////////////////////////////////////////////////////
 //         Acciones para la formaciOn de niveles        //
 //////////////////////////////////////////////////////////
-	
-kk:
-	rts
 	
 fin_nivel:	
 	lda #0
@@ -318,4 +286,32 @@ carga_sal_sal:
 	iny
 	lda (ZEROPAGE_POINTER_3),y	//Carga la pantalla que queremos
 	sta vars_cueva.sentido
-	rts			
+	rts	
+	
+carga_texto:
+	jsr carga_obj_gen
+	ldy ZEROPAGE_POINTER_5
+	iny
+	lda (ZEROPAGE_POINTER_3),y
+	sta ZEROPAGE_POINTER_5
+	iny
+	lda (ZEROPAGE_POINTER_3),y
+	sty PARAM6
+	sta ZEROPAGE_POINTER_5 + 1
+	lda #255
+	sta ZEROPAGE_POINTER_4 
+	jsr print_txt
+	ldy PARAM6
+	jmp niv_prin
+	
+carga_finjuego:
+	iny
+	lda (ZEROPAGE_POINTER_3),y
+	tax
+	:rti_jump_using_x(ends_actions)
+	rts
+
+//DefiniciOn de las acciones para los finales
+ends_actions: :define_rti_jump_table(ENDS)
+				
+				

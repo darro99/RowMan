@@ -14,10 +14,11 @@
 	.label is_dead  = $15	//2.Game Over/ 1. EstA muerto/ 0. EstA vivo
 	.label fire		= $16	//Bandera de fuego pulsado	
 }
-.const VIVO 	= 0
-.const MUERTO 	= 1
-.const INICIO   = 2
-.const GAMEOVER = 3
+.const VIVO 	 = 0
+.const MUERTO 	 = 1
+.const INICIO    = 2
+.const GAMEOVER  = 3
+.const FIN_JUEGO = 4
 
 .const NUMVIDAS = 9
 
@@ -53,6 +54,7 @@
 .const RIGHT	  = 0
 .const LEFT		  = 1
 //Etiquetas para formar cada uno de los niveles
+.const TEXTO	  = 0		//Escribe texto en el nivel
 .const SALIENTE	  = 1		//Tipo de cueva
 .const ESTALACT	  = 2		//Tipo de cueva
 .const BLOQUE	  = 3		//Tipo de cueva
@@ -71,20 +73,11 @@
 .const BMONEDAS   = 16		//Bloque de tesoros
 .const FIN_NIVEL  = 17		//Fin de nivel
 .const JUGADORBMS = 18		//Inicio del jugador con bms
-//Carcateres para formar la cueva
-.const CHAR_CAVE_ID_RIGHT	   = 76//95		// '\'
-.const CHAR_CAVE_ID_LEFT	   = 78//233	// '/'
-.const CHAR_CAVE_DI_RIGHT	   = 77//105	// '\'
-.const CHAR_CAVE_DI_LEFT	   = 79//223	// '/'
-.const CHAR_CAVE_INIT		   = 80		//Caracter incio de las cuevas
-.const CHAR_CAVE_END		   = 83		//Caracter + 1 fin de las cuevas
-.const CHAR_CAVE_SAL_A		   = 98
-.const CHAR_CAVE_SAL_I		   = 99
-.const CHAR_CAVE_SAL_D		   = 100
+.const FINJUEGO   = 19		//Pantalla final
 
 //Array de las acciones para formar los niveles
 .const ACTIONS = List().add(
-  kk,	
+  carga_texto,	
   carga_saliente,
   carga_estalac,
   carga_bloque,
@@ -102,8 +95,25 @@
   carga_btesoros,
   carga_bmonedas,
   fin_nivel,
-  carga_jugador_bms
-).lock()	
+  carga_jugador_bms,
+  carga_finjuego
+).lock()
+
+//Array de las acciones para formar los niveles
+.const ENDS = List().add(
+	final_0
+).lock()
+
+//Carcateres para formar la cueva
+.const CHAR_CAVE_ID_RIGHT	   = 76//95		// '\'
+.const CHAR_CAVE_ID_LEFT	   = 78//233	// '/'
+.const CHAR_CAVE_DI_RIGHT	   = 77//105	// '\'
+.const CHAR_CAVE_DI_LEFT	   = 79//223	// '/'
+.const CHAR_CAVE_INIT		   = 80		//Caracter incio de las cuevas
+.const CHAR_CAVE_END		   = 83		//Caracter + 1 fin de las cuevas
+.const CHAR_CAVE_SAL_A		   = 98
+.const CHAR_CAVE_SAL_I		   = 99
+.const CHAR_CAVE_SAL_D		   = 100
 
 .const CHAR_VACIO			   = 74//32
 .const CHAR_MONEDA			   = 96
@@ -157,11 +167,12 @@
 .const PARAM3                  = $05
 .const PARAM4                  = $06
 .const PARAM5                  = $07
+.const PARAM6	               = $1B
 
 //placeholder for zero page pointers
 .const ZEROPAGE_POINTER_1      = $17	//$17-$18
 .const ZEROPAGE_POINTER_2      = $19	//$19-$1A
-.const ZEROPAGE_POINTER_3      = $21	//$1B-$1C
-.const ZEROPAGE_POINTER_4      = $23	//$1D-$1E
-.const ZEROPAGE_POINTER_5      = $25	//$1F-$20
+.const ZEROPAGE_POINTER_3      = $21	//$21-$22
+.const ZEROPAGE_POINTER_4      = $23	//$23-$24
+.const ZEROPAGE_POINTER_5      = $25	//$25-$26
   

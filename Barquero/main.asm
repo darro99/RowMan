@@ -38,6 +38,8 @@ myDataChars: .fill dataChars.getSize(), dataChars.get(i)
 .import source "general.asm"
 
 .import source "rocas.asm"
+
+.import source "finales.asm"
 main:
        
    
@@ -53,7 +55,7 @@ main:
     //INCIALIZACION SIN PORTADA
     //ldy #NUMVIDAS
     //sty vars_game.vidas
-	//lda #51
+	//lda #23
 	//sta vars_game.nivel
 	//jsr gen_niveles
 	//jsr init_agua
@@ -90,7 +92,7 @@ main:
 //================================
 
 irq: 
-	jsr get_dead
+	ldx vars_game.is_dead
 	cpx #INICIO
 	//bne end_irq
 	bcc end_irq
@@ -110,7 +112,7 @@ end_irq:
 	jsr joystick
 	jsr llenado
 	jsr rocas
-	jsr principal
+	jsr prin_muerto
 	jsr cmp_coli
     jmp $ea31      // return to Kernel routine	
 	

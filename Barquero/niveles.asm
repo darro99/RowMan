@@ -12,7 +12,9 @@ pantallas:
 	.word NIVEL37, NIVEL38, NIVEL39, NIVEL40, NIVEL41
 	.word NIVEL42, NIVEL43, NIVEL44, NIVEL45, NIVEL46
 	.word NIVEL47, NIVEL48, NIVEL49, NIVEL50, NIVEL51
+	.word NIVEL52
 
+//TEXTO,	x, y, byte alto, byte bajo
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
 //ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
 //BLOQUE,   x, y, color, ancho, lineas
@@ -42,6 +44,12 @@ NIVEL0:
 	.byte BTESOROS, 10, 11, 11, 11, 2
 	.byte BTESOROS,  9, 15, 11, 12, 2
 	.byte BTESOROS, 10, 15, 11, 11, 2
+	.byte TEXTO,    17,  5, $6E, $C0
+	.byte TEXTO,     9,  8, $75, $C0
+	.byte TEXTO,     9, 12, $8C, $C0
+	.byte TEXTO,     9, 16, $A8, $C0
+	.byte TEXTO, 	 0,  0, $C0, $C0
+	.byte TEXTO, 	18, 19, $A3, $C0  
 	.byte MONEDA,   17, 19
 	.byte MONEDA,   22, 19
 	.byte MONEDA,   16, 5
@@ -379,7 +387,9 @@ NIVEL22:
 	.byte JUGADOR,  70,222
 	.byte BLOQUE,    0, 16, 11, 40, 2
 	.byte SALIENTE,  0, 18, 11,  8, 2, RIGHT  ,DOWN	
-	.byte SALIDAD,  16, 39, 19,  5 
+	.byte SALIDAD,  16, 39, 19,  5
+	.byte TEXTO, 10, 10, $6E, $C0
+	.byte TEXTO, 18, 10, $A3, $C0  
 	.byte DELAY, 255, 50
 	.byte FIN_NIVEL
 NIVEL23:
@@ -541,6 +551,8 @@ NIVEL32:
 	.byte BLOQUE,   33, 18, 10,  7, 5
 	.byte SALIENTE, 25, 18, 10,  8, 2, LEFT  ,DOWN	
 	.byte SALIDAI,   1,  0, 19,  5 
+	.byte TEXTO, 10, 10, $6E, $C0
+	.byte TEXTO, 18, 10, $A3, $C0  
 	.byte DELAY, 255, 50
 	.byte FIN_NIVEL		
 NIVEL33:	
@@ -862,3 +874,5 @@ NIVEL51:
 	.byte SALARRI,  14, 10, 10	//SALIDA AL FINAL 1
 	.byte DELAY, 100, 60
 	.byte FIN_NIVEL
+NIVEL52:
+	.byte FINJUEGO, 0	

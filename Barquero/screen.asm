@@ -218,9 +218,6 @@ no_com_down:
 marcadores:
 	jsr borra_lin_p
 
-	lda #255
-	sta ZEROPAGE_POINTER_4
-
 	ldx #36				//Escribe en la pantalla en nUmero de vidas
 	stx PARAM1
 	ldy #0
@@ -240,37 +237,19 @@ marcadores:
 	lda #7
 	sta (ZEROPAGE_POINTER_2),y
 	
-	
-	lda #$C0		//Escribe en la pantalla el literal 'Vidas'
-	sta ZEROPAGE_POINTER_3 + 1
-	lda #$5E			
-	sta ZEROPAGE_POINTER_3
-	lda #30
-	sta PARAM1
-	jsr get_linea
-	jsr print_txt
+	:escribe($C0, $5E, 30,  0, 255)	//Vidas
 	jsr m_puntuacion
 	rts
 	
 m_puntuacion:
-	lda #17
-	sta PARAM1
-	lda #0
-	sta PARAM2
-	lda #$58		//Escribe en la pantalla la puntuaciOn
-	sta ZEROPAGE_POINTER_3
-	lda #$C0
-	sta ZEROPAGE_POINTER_3 + 1
-	lda #57
-	sta ZEROPAGE_POINTER_4
-	jsr get_linea
-	jsr print_txt
+	//Escribe en la pantalla la puntuaciOn
+	:escribe($C0, $58, 17, 0, 57)
 	rts
 	
 print_txt:
 	ldy #0
 init_txt:	
-	lda (ZEROPAGE_POINTER_3),y
+	lda (ZEROPAGE_POINTER_5),y
 	cmp ZEROPAGE_POINTER_4
 	beq fin_print
 	sta (ZEROPAGE_POINTER_1),y

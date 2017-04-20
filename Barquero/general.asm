@@ -1,16 +1,3 @@
-//FunciOn para cargar la bandera del personaje a muerto
-//ParAmetros:
-//	Registro X. 1. EstA muerto/ 0. EstA vivo
-/*set_dead:
-	stx vars_game.is_dead
-	rts*/
-
-//FunciOn para obtener la bandera del personaje muerto
-//Retorno:
-//	Registro X. 1. EstA muerto/ 0. EstA vivo
-get_dead:
-	ldx vars_game.is_dead
-	rts	
 
 //FunciOn para la gestiOn de vidas del juego	
 muerte:
@@ -21,6 +8,7 @@ muerte:
 	ldx #MUERTO				//Se pone la bandera de muerto
 	stx vars_game.is_dead
 	rts
+	
 game_over:
 	ldx #GAMEOVER			//Se pone la bandera de Game Over
 	stx vars_game.is_dead
@@ -32,21 +20,16 @@ game_over:
 	jsr borra_pant
 	jsr oculta_rocas
 	//Escribe en la pantalla el literal 'GAME OVER'
-	:escribe($C0,$64,16,12) 
+	:escribe($C0, $64, 16, 12, 255) 
 	jsr init_agua
 	ldx #0
 	stx vars_game.fire
 	jsr music.init  
 	rts	
-	
-principal:
+
+//FunciOn para comprobar si el jugador estA muertesito
+prin_muerto:	
 	ldx vars_game.is_dead
-	cpx #VIVO
-	beq fin_principal
-	cpx #INICIO
-	beq gameo_prin
-	cpx #GAMEOVER
-	beq comp_go
 	cpx #MUERTO
 	bne fin_principal
 	ldx vars_game.fire
@@ -60,6 +43,14 @@ principal:
 	stx BORDER
 	rts
 	
+principal:
+	ldx vars_game.is_dead
+	cpx #INICIO
+	beq gameo_prin
+	cpx #GAMEOVER
+	beq comp_go
+	rts
+		
 comp_go:
 	ldx vars_game.fire
 	cpx #0
@@ -67,6 +58,7 @@ comp_go:
 	ldx #INICIO
 	stx vars_game.is_dead
 	ldx #0
+	stx BORDER
 	stx vars_game.fire  
 	jsr pant_init
 	rts		
@@ -120,7 +112,7 @@ loop_f_musica:
 	inx
 	cpx #25
 	bne loop_f_musica
-	lda #5
+	lda #0
 	sta BORDER
 	rts
 	
@@ -138,28 +130,49 @@ pant_init:
 	jsr solo_init
 	jsr init_agua
 	
-	:escribe($C0, $6E, 17,  5)	//ROWMAN
-	:escribe($C0, $75,  9,  8)	//Programado por
-	:escribe($C0, $8C,  9, 12)	//GrAficos por
-	:escribe($C0, $A8,  9, 16)	//MUsica por
-	:escribe($C0, $A3, 18, 19)	//2017
-	:escribe($C0, $C0,  0,  0)	//VersiOn
-	
 	ldx #0
 	stx vars_game.fire  
 	rts
+
+////////////////////////////////////////////////////////////
+//				MACROS									  //
+////////////////////////////////////////////////////////////
 	
-.macro escribe(byte_bajo, byte_alto, x, y) {
+.macro escribe(byte_bajo, byte_alto, x, y, fin) {
 	lda #byte_bajo		//Escribe en la pantalla el literal 'GAME OVER'
-	sta ZEROPAGE_POINTER_3 + 1
+	sta ZEROPAGE_POINTER_5 + 1
 	lda #byte_alto			
-	sta ZEROPAGE_POINTER_3
+	sta ZEROPAGE_POINTER_5
 	lda #x
 	sta PARAM1
 	lda #y
 	sta PARAM2
-	lda #255
+	lda #fin
 	sta ZEROPAGE_POINTER_4
 	jsr get_linea
 	jsr print_txt
+}
+
+//Macro para las redirecciones de la tabla de funciones
+//Fuente 64bites.com
+//ParAmetro: Tabla de funciones
+.macro rti_jump_using_x(rti_jump_table) {
+  lda rti_jump_table.actions_msb, X
+  pha
+  lda rti_jump_table.actions_lsb, X
+  pha
+  php
+  rti
+}
+
+//Macro para el relleno de la tabla de funciones de 
+//creaciOn de niveles
+//Fuente 64bites.com
+//ParAmetro: Array de funciones
+.macro define_rti_jump_table(actions) {
+  actions_lsb:
+    .fill actions.size(), <actions.get(i)
+
+  actions_msb:
+    .fill actions.size(), >actions.get(i)
 }		    
