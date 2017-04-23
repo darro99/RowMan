@@ -99,10 +99,9 @@ carga_gen:
 	sta vars_cueva.y
 	iny
 	lda (ZEROPAGE_POINTER_3),y
-	sta vars_cueva.color
-	iny
-	lda (ZEROPAGE_POINTER_3),y
 	sta vars_cueva.ancho
+	lda #11
+	sta vars_cueva.color
 	rts	
 
 carga_jugador_bms:
@@ -150,6 +149,8 @@ carga_moneda:
 
 carga_bmonedas:
 	jsr carga_gen
+	lda #15
+	sta vars_cueva.color
 	lda #CHAR_MONEDA
 	sta vars_cueva.caracter
 carga_bmonedas2:	
@@ -176,6 +177,8 @@ carga_tesoro:
 
 carga_btesoros:
 	jsr carga_gen
+	lda #11
+	sta vars_cueva.color
 	lda #CHAR_TESORO
 	sta vars_cueva.caracter
 	jmp carga_bmonedas2	

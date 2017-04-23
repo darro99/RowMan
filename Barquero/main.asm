@@ -53,12 +53,12 @@ main:
     jsr init_screen
     
     //INCIALIZACION SIN PORTADA
-    /*ldy #NUMVIDAS
-    sty vars_game.vidas
-	lda #53
-	sta vars_game.nivel
-	jsr gen_niveles
-	jsr init_agua*/
+    //ldy #NUMVIDAS
+    //sty vars_game.vidas
+	//lda #53
+	//sta vars_game.nivel
+	//jsr gen_niveles
+	//jsr init_agua
 
 	//INCIALIZACION CON PORTADA
 	jsr pant_init
