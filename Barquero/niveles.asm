@@ -15,9 +15,9 @@ pantallas:
 	.word NIVEL52, NIVEL53, NIVEL54
 
 //TEXTO,	x, y, byte alto, byte bajo
-//SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
-//ESTALACT, x, y, color, ancho, up/down (el ancho SIEMPRE debe ser par)
-//BLOQUE,   x, y, color, ancho, lineas
+//SALIENTE, x, y, ancho, ancho_min,izq/der,up/down
+//ESTALACT, x, y, ancho, up/down (el ancho SIEMPRE debe ser par)
+//BLOQUE,   x, y, ancho, lineas
 //JUGADOR,	x, y (La coordenada x SIEMPRE debe ser par))
 //MODENA,	x, y
 //ROCA,		x, y, velocidad 
@@ -28,12 +28,11 @@ pantallas:
 //SALIDAD,	pantalla, x, y, ancho
 //SALIDAI,	pantalla, x, y, ancho
 //SALIDAA,	pantalla, x, y, ancho
-//BTESOROS, x, y, color, ancho, lineas
-//BMONEDAS, x, y, color, ancho, lineas
+//BTESOROS, x, y, ancho, lineas
+//BMONEDAS, x, y, ancho, lineas
 //DELAY,	contador1, contador2 [SIEMPRE EL ULTIMO]	
 //DefiniciOn de niveles
-//11,11,15,15,11 Colores antiguos del nivel
-NIVEL0:
+NIVEL0: //PORTADA
 	.byte JUGADOR, 170,222
 	//R ////////////////////////////////
 	.byte BMONEDAS,  4,  1,  2, 1 	
