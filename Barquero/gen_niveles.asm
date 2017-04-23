@@ -220,11 +220,16 @@ carga_roca:
 	inc sprites.num_roca
 	jmp niv_prin
 
+carga_sal_ap:
+	jsr carga_sal_sal
+	jmp carga_sal_ans
+
 carga_sal_arr:
 	lda vars_game.nivel
 	clc
 	adc #5
 	sta vars_cueva.sentido
+carga_sal_ans:	
 	lda #0
 	jsr carga_salida_gen
 	jsr prin_salida_a

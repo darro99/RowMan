@@ -12,7 +12,9 @@
 	.label nivel	= $0B
 	.label vidas	= $14
 	.label is_dead  = $15	//2.Game Over/ 1. EstA muerto/ 0. EstA vivo
-	.label fire		= $16	//Bandera de fuego pulsado	
+	.label fire		= $16	//Bandera de fuego pulsado
+	.label num_final= $1C	//Indica el nUmero de final en el que se encuentra el juego
+	.label est_final= $1D	//Estado del final actual	
 }
 .const VIVO 	 = 0
 .const MUERTO 	 = 1
@@ -20,7 +22,7 @@
 .const GAMEOVER  = 3
 .const FIN_JUEGO = 4
 
-.const NUMVIDAS = 9
+.const NUMVIDAS = 3
 
 //Variables para el pintado y animaciOn del agua
 .namespace vars_agua {
@@ -69,11 +71,12 @@
 .const SALDERE	  = 12		//Salida hacia la derecha
 .const SALIDAD	  = 13		//Salida hacia la derecha y una pantalla indicada
 .const SALIDAI	  = 14		//Salida hacia la izquierda y una pantalla indicada
-.const BTESOROS   = 15		//Bloque de monedillas
-.const BMONEDAS   = 16		//Bloque de tesoros
-.const FIN_NIVEL  = 17		//Fin de nivel
-.const JUGADORBMS = 18		//Inicio del jugador con bms
-.const FINJUEGO   = 19		//Pantalla final
+.const SALIDAA	  = 15		//Salida hacia la izquierda y una pantalla indicada
+.const BTESOROS   = 16		//Bloque de monedillas
+.const BMONEDAS   = 17		//Bloque de tesoros
+.const FIN_NIVEL  = 18		//Fin de nivel
+.const JUGADORBMS = 19		//Inicio del jugador con bms
+.const FINJUEGO   = 20		//Pantalla final
 
 //Array de las acciones para formar los niveles
 .const ACTIONS = List().add(
@@ -92,6 +95,7 @@
   carga_sal_der,
   carga_sal_dp,
   carga_sal_ip,
+  carga_sal_ap,
   carga_btesoros,
   carga_bmonedas,
   fin_nivel,
@@ -99,9 +103,34 @@
   carga_finjuego
 ).lock()
 
-//Array de las acciones para formar los niveles
+.const INITS = List().add(
+	pant_init,
+	instrucci,
+	init_game
+).lock() 
+
+//Array de las acciones para formar los finales
 .const ENDS = List().add(
-	final_0
+	final_0,
+	final_1,
+	final_2
+).lock()
+
+.const FINALES = List().add(
+	finales_0,
+	finales_1,
+	finales_2
+).lock()
+
+.const FINAL_1 = List().add(
+	final_1_oni,
+	final_1_barca,
+	final_1_sefue
+).lock()
+
+.const FINAL_2 = List().add(
+	final_2_rocas,
+	final_2_end
 ).lock()
 
 //Carcateres para formar la cueva

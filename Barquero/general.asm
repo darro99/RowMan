@@ -49,26 +49,33 @@ principal:
 	beq gameo_prin
 	cpx #GAMEOVER
 	beq comp_go
+	cpx #FIN_JUEGO
+	beq finales_prin
 	rts
 		
 comp_go:
 	ldx vars_game.fire
 	cpx #0
-	beq fin_principal
+	beq fin_comp_go
 	ldx #INICIO
 	stx vars_game.is_dead
 	ldx #0
 	stx BORDER
+	stx $d017			//Vuelve a su tagano original todo (culpa de los finales)
+	stx $d01d
+	stx SP_POSITION + 2 //Por si queda una piedra (culpa de los finales)
 	stx vars_game.fire  
 	jsr pant_init
+fin_comp_go:	
 	rts		
 	
 gameo_prin:
 	ldx vars_game.fire
 	cpx #0
 	beq fin_principal
-	
-	jsr fin_musica
+	ldx vars_game.est_final
+	:rti_jump_using_x(inicios_actions)
+	/*jsr fin_musica
 	ldx #0
 	stx BORDER
 	
@@ -77,9 +84,19 @@ gameo_prin:
 	lda #4					//Se reinicia el juego,
 	sta vars_game.nivel		//PERO DEBERiA DE IR A PANTALLA PRINCIPAL
 	jsr gen_niveles
-	jsr init_agua
+	jsr init_agua*/
 fin_principal:
-	rts	
+	rts
+	
+inicios_actions: :define_rti_jump_table(INITS)		
+	
+finales_prin:
+	ldx vars_game.num_final
+	:rti_jump_using_x(finales_actions)
+	rts
+	
+//DefiniciOn de las acciones para los finales
+finales_actions: :define_rti_jump_table(FINALES)	
 	
 //Función para sumar el contador. 
 //Parámetros: 
@@ -130,9 +147,36 @@ pant_init:
 	jsr solo_init
 	jsr init_agua
 	
+	lda #1
+	sta vars_game.est_final
 	ldx #0
 	stx vars_game.fire  
 	rts
+	
+instrucci:
+	lda #CHAR_VACIO
+	sta PARAM1
+	lda #1
+	sta PARAM2
+	jsr borra_pant
+	lda #37
+	sta vars_game.nivel
+	jsr solo_init
+	inc vars_game.est_final
+	ldx #0
+	stx vars_game.fire  
+	rts	
+	
+	
+init_game:
+	jsr fin_musica
+	ldy #NUMVIDAS
+    sty vars_game.vidas
+	lda #4					//Se reinicia el juego,
+	sta vars_game.nivel		//PERO DEBERiA DE IR A PANTALLA PRINCIPAL
+	jsr gen_niveles
+	jsr init_agua
+	rts	
 
 ////////////////////////////////////////////////////////////
 //				MACROS									  //

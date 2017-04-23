@@ -12,7 +12,7 @@ pantallas:
 	.word NIVEL37, NIVEL38, NIVEL39, NIVEL40, NIVEL41
 	.word NIVEL42, NIVEL43, NIVEL44, NIVEL45, NIVEL46
 	.word NIVEL47, NIVEL48, NIVEL49, NIVEL50, NIVEL51
-	.word NIVEL52
+	.word NIVEL52, NIVEL53, NIVEL54
 
 //TEXTO,	x, y, byte alto, byte bajo
 //SALIENTE, x, y, color, ancho, ancho_min,izq/der,up/down
@@ -27,6 +27,7 @@ pantallas:
 //SALDERE,	x, y, ancho
 //SALIDAD,	pantalla, x, y, ancho
 //SALIDAI,	pantalla, x, y, ancho
+//SALIDAA,	pantalla, x, y, ancho
 //BTESOROS, x, y, color, ancho, lineas
 //BMONEDAS, x, y, color, ancho, lineas
 //DELAY,	contador1, contador2 [SIEMPRE EL ULTIMO]	
@@ -626,7 +627,22 @@ NIVEL36:
 	.byte BTESOROS, 36,  5, 11,  2,  3		
 	.byte DELAY, 90, 50
 	.byte FIN_NIVEL
-NIVEL37:	//Reservados
+NIVEL37: //Instrucciones
+	.byte JUGADOR,   0,222
+	.byte TEXTO,    17,  2, $6E, $C0
+	.byte MONEDA,   16,  2
+	.byte MONEDA,   23,  2
+	.byte TEXTO,     2,  7, $19, $C1
+	.byte TEXTO,     4,  9, $3f, $C1
+	.byte TEXTO,     1, 11, $60, $C1
+	.byte TEXTO,     1, 14, $88, $C1
+	.byte TEXTO,    13, 16, $AF, $C1
+	.byte TEXTO,     1, 18, $BF, $C1
+	.byte MONEDA,   36, 18
+	.byte TEXTO,    14, 20, $E4, $C1
+	.byte TESORO,   24, 20
+	.byte TEXTO,    12, 23, $F0, $C1
+	.byte FIN_NIVEL
 NIVEL38:	//Reservados
 NIVEL39:
 	.byte JUGADOR, 150,222
@@ -799,7 +815,13 @@ NIVEL46:
 	.byte BLOQUE,    0,  0,  8, 39,  1
 	.byte DELAY, 100, 60
 	.byte FIN_NIVEL
-NIVEL47: //Reservado
+NIVEL47: //Final
+	.byte JUGADOR, 170,222
+	.byte TEXTO,    13,  5, $C7, $C0
+	.byte TEXTO,     3,  7, $D5, $C0
+	.byte TEXTO,    14,  8, $F7, $C0
+	.byte TEXTO,    12, 12, $06, $C1
+	.byte FIN_NIVEL
 NIVEL48:		
 	.byte JUGADORBMS,  40,222
 	.byte ROCABMS,     15, 30,  3
@@ -809,7 +831,7 @@ NIVEL48:
 	.byte ROCA,       130, 27,  6
 	.byte ROCA,        84, 25,  5
 	.byte SALIDAI, 46, 39,  1,  9
-	.byte SALARRI,  6,  1,  6	//SALIDA AL FINAL 4
+	.byte SALARRI,  6,  1,  6	//SALIDA AL FINAL 3
 	.byte SALIDAD, 32,  0,  7, 16
 	.byte SALIENTE, 0,  0,  8,  8,  2, RIGHT  ,DOWN
 	.byte BLOQUE,  14,  0,  8, 26,  8
@@ -826,7 +848,7 @@ NIVEL49:
 	.byte ROCA,    150, 25, 12
 	.byte ROCA,    123,  0, 15
 	.byte SALIZQU,   0,  7,  3
-	.byte SALIDAD,  32, 39, 11,  3 //SALIDA AL FINAL 3
+	.byte SALIDAD,  54, 39, 11,  3 //SALIDA AL FINAL 2
 	.byte BMONEDAS,  3,  7, 15, 10,  4
 	.byte BMONEDAS, 20, 10, 15,  9,  4
 	.byte BTESOROS, 20, 18, 11,  2,  2
@@ -845,8 +867,8 @@ NIVEL50:
 	.byte ROCA,    190, 30,  9
 	.byte ROCA,    135, 32,  5
 	.byte ROCA,     80, 31,  5
-	.byte BLOQUE,   14,  0,  8,  24, 1
-	.byte SALARRI,  18,  1,  6	//SALIDA AL FINAL 2
+	.byte BLOQUE,   14,  0,  8, 24, 1
+	.byte SALIDAA,  53, 18,  1,  6	//SALIDA AL FINAL 1
 	.byte SALIZQU,   0, 13,  3
 	.byte SALDERE,  39, 21,  3
 	.byte BLOQUE,   38,  0,  8,  2, 20
@@ -871,8 +893,12 @@ NIVEL51:
 	.byte BLOQUE,    0,  0,  8, 40, 10
 	.byte BLOQUE,    0, 12,  8,  2, 11
 	.byte BLOQUE,   38, 12,  8,  2, 11
-	.byte SALARRI,  14, 10, 10	//SALIDA AL FINAL 1
+	.byte SALIDAA,  52, 14, 10, 10	//SALIDA AL FINAL 0
 	.byte DELAY, 100, 60
 	.byte FIN_NIVEL
 NIVEL52:
-	.byte FINJUEGO, 0	
+	.byte FINJUEGO, 0
+NIVEL53:
+	.byte FINJUEGO, 1			
+NIVEL54:
+	.byte FINJUEGO, 2	
