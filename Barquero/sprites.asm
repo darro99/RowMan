@@ -13,8 +13,10 @@ init_sprites:
 sp_color:
 	sta SP_PCOLOR, x
 	inx
-	cpx #8
-	bne sp_color	
+	cpx #7
+	bne sp_color
+	lda #7		//Color del pescao
+	sta SP_PCOLOR, x
 	rts					
 
 //FunciOn para que la barca 'flote' con la subida del agua	
@@ -84,14 +86,36 @@ chg_bms:
 	rts
 
 //FunciOn para comprobar si el sprite 0 ha colisionado con otro sprite	
-cmp_coli:
+/*cmp_coli:
 	lda SP_COLI
 	lsr
 	bcc end_coli
 	jsr muerte
 end_coli:
-	rts		
+	rts*/	
 	
+cmp_coli:
+	ldx vars_game.is_dead
+	cpx #VIVO
+	bne end_coli
+	
+	lda SP_COLI
+	cmp #$81
+	beq pez_coli
+	lsr
+	bcc end_coli
+	jsr muerte
+end_coli:
+	rts	
+	
+pez_coli:
+	lda pez.frame
+	cmp #5
+	beq pez_fin_coli
+	jsr pez_fin
+pez_fin_coli:	
+	rts	
+			
 anim_barca:
 	inc sprites.delay_anim
 	ldx sprites.delay_anim

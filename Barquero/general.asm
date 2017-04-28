@@ -10,8 +10,9 @@ muerte:
 	rts
 	
 game_over:
-	ldx #GAMEOVER			//Se pone la bandera de Game Over
-	stx vars_game.is_dead
+	jsr music.init  
+	ldy #NUMVIDAS + 1
+    sty vars_game.vidas
 	lda #CHAR_VACIO
 	sta PARAM1
 	lda #1
@@ -19,12 +20,14 @@ game_over:
 	sta SP_POSITION + 1 	//Oculta la barca
 	jsr borra_pant
 	jsr oculta_rocas
+	jsr oculta_pez
 	//Escribe en la pantalla el literal 'GAME OVER'
-	:escribe($C0, $64, 16, 12, 255) 
+	:escribe($C0, $64, 16, 12, 255, 1) 
 	jsr init_agua
 	ldx #0
 	stx vars_game.fire
-	jsr music.init  
+	ldy #GAMEOVER			//Se pone la bandera de Game Over
+	sty vars_game.is_dead
 	rts	
 
 //FunciOn para comprobar si el jugador estA muertesito
@@ -64,8 +67,11 @@ comp_go:
 	stx $d017			//Vuelve a su tagano original todo (culpa de los finales)
 	stx $d01d
 	stx SP_POSITION + 2 //Por si queda una piedra (culpa de los finales)
+	stx vars_game.est_final
 	stx vars_game.fire  
 	jsr pant_init
+	jsr init_pez
+	jsr pez_sale
 fin_comp_go:	
 	rts		
 	
@@ -75,16 +81,7 @@ gameo_prin:
 	beq fin_principal
 	ldx vars_game.est_final
 	:rti_jump_using_x(inicios_actions)
-	/*jsr fin_musica
-	ldx #0
-	stx BORDER
-	
-	ldy #NUMVIDAS
-    sty vars_game.vidas
-	lda #4					//Se reinicia el juego,
-	sta vars_game.nivel		//PERO DEBERiA DE IR A PANTALLA PRINCIPAL
-	jsr gen_niveles
-	jsr init_agua*/
+
 fin_principal:
 	rts
 	
@@ -147,13 +144,13 @@ pant_init:
 	jsr solo_init
 	jsr init_agua
 	
-	lda #1
-	sta vars_game.est_final
+	inc vars_game.est_final
 	ldx #0
 	stx vars_game.fire  
 	rts
 	
 instrucci:
+	sta SP_POSITION + 15
 	lda #CHAR_VACIO
 	sta PARAM1
 	lda #1
@@ -172,6 +169,8 @@ init_game:
 	jsr fin_musica
 	ldy #NUMVIDAS
     sty vars_game.vidas
+    lda #30
+    sta pez.max_delay
 	lda #4					//Se reinicia el juego,
 	sta vars_game.nivel		//PERO DEBERiA DE IR A PANTALLA PRINCIPAL
 	jsr gen_niveles
@@ -182,7 +181,7 @@ init_game:
 //				MACROS									  //
 ////////////////////////////////////////////////////////////
 	
-.macro escribe(byte_bajo, byte_alto, x, y, fin) {
+.macro escribe(byte_bajo, byte_alto, x, y, fin, color) {
 	lda #byte_bajo		//Escribe en la pantalla el literal 'GAME OVER'
 	sta ZEROPAGE_POINTER_5 + 1
 	lda #byte_alto			
@@ -193,6 +192,8 @@ init_game:
 	sta PARAM2
 	lda #fin
 	sta ZEROPAGE_POINTER_4
+	lda #color
+	sta vars_cueva.color
 	jsr get_linea
 	jsr print_txt
 }

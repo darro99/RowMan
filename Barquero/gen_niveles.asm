@@ -11,6 +11,10 @@ gen_niveles:
 	ldy #JOY_NEUTRAL
 	sta joy_p_state
 	
+	sta pez.vivo		   //Estado del pez
+    sta pez.delay
+    sta pez.frame
+	
 	ldy #1					//Se resetea el retardo de la barca
 	sty sprites.delay_barca
 	sty sprites.desp_roca
@@ -295,8 +299,16 @@ carga_sal_sal:
 	lda (ZEROPAGE_POINTER_3),y	//Carga la pantalla que queremos
 	sta vars_cueva.sentido
 	rts	
+
+carga_texto_color:
+	iny
+	lda (ZEROPAGE_POINTER_3),y
+	jmp carga_texto_ccolor
 	
 carga_texto:
+	lda #1
+carga_texto_ccolor:	
+	sta vars_cueva.color
 	jsr carga_obj_gen
 	ldy ZEROPAGE_POINTER_5
 	iny
@@ -311,6 +323,12 @@ carga_texto:
 	jsr print_txt
 	ldy PARAM6
 	jmp niv_prin
+	
+carga_nofish:
+	lda #MUERTO
+	sta pez.vivo
+	jsr oculta_pez
+	jmp niv_prin	
 	
 carga_finjuego:
 	iny

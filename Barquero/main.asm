@@ -6,10 +6,10 @@
 //Sprites
 .pc = $2980
 //.import binary "bin/sprites.bin"
-.import binary "bin/Sprites0422.raw"
+.import binary "bin/Sprites0425.raw"
 
 //UGDs (GrAficos definidos por el usuario)
-.var dataChars = LoadBinary("bin/charset.bin")
+.var dataChars = LoadBinary("bin/charset0425.bin")
 .pc = $3800
 myDataChars: .fill dataChars.getSize(), dataChars.get(i)
 
@@ -40,6 +40,8 @@ myDataChars: .fill dataChars.getSize(), dataChars.get(i)
 .import source "rocas.asm"
 
 .import source "finales.asm"
+
+.import source "peces.asm"
 main:
        
    
@@ -47,21 +49,24 @@ main:
     lda #0
     sta BACKGROUND
     sta BORDER
-    //sta vars_game.is_dead  
     
     jsr init_sprites
     jsr init_screen
+    jsr init_pez
     
     //INCIALIZACION SIN PORTADA
+	//lda #30
+    //sta pez.max_delay
     //ldy #NUMVIDAS
     //sty vars_game.vidas
-	//lda #53
+	//lda #54
 	//sta vars_game.nivel
 	//jsr gen_niveles
 	//jsr init_agua
 
 	//INCIALIZACION CON PORTADA
 	jsr pant_init
+	jsr pez_sale
 	
 	ldx #0
 	ldy #0
@@ -99,6 +104,7 @@ irq:
 cont_irq:	
 	jsr comp_fire
 	jsr principal
+	jsr pez_anim
 	asl $d019
 	jsr music.play
 	pla
@@ -112,6 +118,7 @@ end_irq:
 	jsr joystick
 	jsr llenado
 	jsr rocas
+	jsr peces
 	jsr prin_muerto
 	jsr cmp_coli
     jmp $ea31      // return to Kernel routine	

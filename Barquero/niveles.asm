@@ -95,8 +95,8 @@ NIVEL0: //PORTADA
 	.byte BMONEDAS, 36,  2,  1, 4
 	///////////////////////////////////
 	.byte TEXTO,     9, 12, $75, $C0
-	.byte TEXTO,     9, 14, $8C, $C0
-	.byte TEXTO,     9, 16, $A8, $C0
+	.byte TEXTOCOLOR,10, 9, 14, $8C, $C0
+	.byte TEXTOCOLOR, 6, 9, 16, $A8, $C0
 	.byte TEXTO, 	33,  9, $C0, $C0
 	.byte TEXTO, 	18, 19, $A3, $C0  
 	.byte FIN_NIVEL
@@ -668,20 +668,21 @@ NIVEL36:
 	.byte DELAY, 90, 50
 	.byte FIN_NIVEL
 NIVEL37: //Instrucciones
+	.byte NOFISH
 	.byte JUGADOR,   0,222
 	.byte TEXTO,    17,  2, $6E, $C0
 	.byte MONEDA,   16,  2
 	.byte MONEDA,   23,  2
 	.byte TEXTO,     2,  7, $19, $C1
 	.byte TEXTO,     4,  9, $3f, $C1
-	.byte TEXTO,     1, 11, $60, $C1
-	.byte TEXTO,     1, 14, $88, $C1
-	.byte TEXTO,    13, 16, $AF, $C1
-	.byte TEXTO,     1, 18, $BF, $C1
+	.byte TEXTO,     0, 11, $60, $C1
+	.byte TEXTO,     1, 14, $89, $C1
+	.byte TEXTO,    13, 16, $B0, $C1
+	.byte TEXTO,     1, 18, $C0, $C1
 	.byte MONEDA,   36, 18
-	.byte TEXTO,    14, 20, $E4, $C1
+	.byte TEXTO,    14, 20, $E5, $C1
 	.byte TESORO,   24, 20
-	.byte TEXTO,    12, 23, $F0, $C1
+	.byte TEXTO,    12, 23, $F1, $C1
 	.byte FIN_NIVEL
 NIVEL38:	//Reservados
 NIVEL39:
@@ -937,8 +938,11 @@ NIVEL51:
 	.byte DELAY, 100, 60
 	.byte FIN_NIVEL
 NIVEL52:
+	.byte NOFISH
 	.byte FINJUEGO, 0
 NIVEL53:
+	.byte NOFISH
 	.byte FINJUEGO, 1			
 NIVEL54:
+	.byte NOFISH
 	.byte FINJUEGO, 2	

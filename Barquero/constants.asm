@@ -77,6 +77,8 @@
 .const FIN_NIVEL  = 18		//Fin de nivel
 .const JUGADORBMS = 19		//Inicio del jugador con bms
 .const FINJUEGO   = 20		//Pantalla final
+.const TEXTOCOLOR = 21		//Texto con color
+.const NOFISH 	  = 22		//No aparece el pecao
 
 //Array de las acciones para formar los niveles
 .const ACTIONS = List().add(
@@ -100,7 +102,9 @@
   carga_bmonedas,
   fin_nivel,
   carga_jugador_bms,
-  carga_finjuego
+  carga_finjuego,
+  carga_texto_color,
+  carga_nofish
 ).lock()
 
 .const INITS = List().add(
@@ -133,6 +137,15 @@
 	final_2_end
 ).lock()
 
+.const MOVPEZ = List().add(
+	pez_sale,
+	pez_frame_1,
+	pez_frame_2,
+	pez_frame_3,
+	pez_entra,
+	pez_puntua
+).lock()	
+
 //Carcateres para formar la cueva
 .const CHAR_CAVE_ID_RIGHT	   = 76//95		// '\'
 .const CHAR_CAVE_ID_LEFT	   = 78//233	// '/'
@@ -161,6 +174,15 @@
 .label num_roca 	=$2A
 .label desp_roca	=$2B
 }
+
+.namespace pez{	
+.label delay		=$2E
+.label frame		=$2F
+.label vivo			=$30
+.label x			=$31
+.label y    		=$32
+.label max_delay   	=$33	
+}
 //Direcciones de sprites
 .const SP_POSITION = $d000	//DirecciOn desde la cual se posicionan los sprites
 .const SP_ENBABLE  = $d015	//DirecciOn para habilitar sprites
@@ -172,6 +194,8 @@
 .const SP_PBDEAD   = $AC	//Inicio del puntero de la barca hundida
 .const SP_PROCK    = $AE	//Inicio del puntero de la roca
 .const SP_PROCK_FIN= $B1	//Fin del puntero de la roca
+.const SP_FISH_R   = $B2	//Inicio pez derecha
+.const SP_FISH_L   = $B7	//Inicio pez izquierda
 .const SP_MCOLOR   = $d01c	//DirecciOn para asignar el multicolor a los sprites
 .const SP_COLOR1   = $d025	//DirecciOn para asignar el color 1 de los sprites multicolores
 .const SP_COLOR2   = $d026	//DirecciOn para asignar el color 2 de los sprites multicolores

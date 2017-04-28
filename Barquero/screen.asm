@@ -197,6 +197,7 @@ nuevo_niv:
 	lda salidas_l, x
 	sta vars_game.nivel
 	jsr oculta_rocas
+	jsr oculta_pez
 	jsr gen_niveles
 	jsr init_agua
 no_com_down:	
@@ -237,13 +238,13 @@ marcadores:
 	lda #7
 	sta (ZEROPAGE_POINTER_2),y
 	
-	:escribe($C0, $5E, 30,  0, 255)	//Vidas
+	:escribe($C0, $5E, 30,  0, 255, 1)	//Vidas
 	jsr m_puntuacion
 	rts
 	
 m_puntuacion:
 	//Escribe en la pantalla la puntuaciOn
-	:escribe($C0, $58, 17, 0, 57)
+	:escribe($C0, $58, 17, 0, 57, 1)
 	rts
 	
 print_txt:
@@ -253,7 +254,7 @@ init_txt:
 	cmp ZEROPAGE_POINTER_4
 	beq fin_print
 	sta (ZEROPAGE_POINTER_1),y
-	lda #1
+	lda vars_cueva.color
 	sta (ZEROPAGE_POINTER_2),y
 	iny
 	jmp init_txt
