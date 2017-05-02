@@ -7,6 +7,9 @@ muerte:
 	sta SP_POINTER	
 	ldx #MUERTO				//Se pone la bandera de muerto
 	stx vars_game.is_dead
+	lda #0
+	sta roca_suena
+	jsr fin_musica
 	rts
 	
 game_over:
@@ -117,18 +120,6 @@ salto:
     lda #1 
     sta PARAM3          //Se asigna 1 (El acarreo)         
     jmp haz_puntos 	
-
-fin_musica:
-	ldx #0
-loop_f_musica:	
-	lda #0
-	sta $D400,x
-	inx
-	cpx #25
-	bne loop_f_musica
-	lda #0
-	sta BORDER
-	rts
 	
 pant_init:
 	lda #CHAR_VACIO
@@ -167,14 +158,24 @@ instrucci:
 	
 init_game:
 	jsr fin_musica
+	jsr init_fx
 	ldy #NUMVIDAS
     sty vars_game.vidas
     lda #30
     sta pez.max_delay
 	lda #4					//Se reinicia el juego,
 	sta vars_game.nivel		//PERO DEBERiA DE IR A PANTALLA PRINCIPAL
+
+	ldy #5
+	lda #0
+	init_puntuacion:
+	sta puntuacion, y
+	dey 
+	bne init_puntuacion
+
 	jsr gen_niveles
 	jsr init_agua
+	
 	rts	
 
 ////////////////////////////////////////////////////////////
@@ -182,7 +183,7 @@ init_game:
 ////////////////////////////////////////////////////////////
 	
 .macro escribe(byte_bajo, byte_alto, x, y, fin, color) {
-	lda #byte_bajo		//Escribe en la pantalla el literal 'GAME OVER'
+	lda #byte_bajo		
 	sta ZEROPAGE_POINTER_5 + 1
 	lda #byte_alto			
 	sta ZEROPAGE_POINTER_5

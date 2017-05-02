@@ -228,4 +228,48 @@
 .const ZEROPAGE_POINTER_3      = $21	//$21-$22
 .const ZEROPAGE_POINTER_4      = $23	//$23-$24
 .const ZEROPAGE_POINTER_5      = $25	//$25-$26
+
+// Constantes efectos
+.const NOTA_ACT_PEZ 	= $1E
+.const NOTA_ACT_ROCA 	= $1F
+.const roca_suena 	= $34
+.const roca_sonando = $35
+
+.const VOLUMEN = $D418
+
+.const VOZ1B = $D400
+.const VOZ1A = $D401
+.const PULSOB1 = $D402
+.const PULSOA1 = $D403
+.const ENVOLVENTE1 = $D404
+.const AD1 = $D405
+.const SR1 = $D406
+	
+.const VOZ2B = $D407
+.const VOZ2A = $D408
+.const PULSOB2 = $D409
+.const PULSOA2 = $D40A
+.const ENVOLVENTE2 = $D40B
+.const AD2 = $D40C
+.const SR2 = $D40D
+
+.const VOZ3B = $D40E
+.const VOZ3A = $D40F
+.const PULSOB3 = $D410
+.const PULSOA3 = $D411
+.const ENVOLVENTE3 = $D412
+.const AD3 = $D413
+.const SR3 = $D414
+
+.const TRIANGULO = 17
+.const SIERRA = 33
+.const CUADRADA = 65
+.const RUIDO = 129
+
+
+
+
+
+
+
   

@@ -129,6 +129,7 @@ anim_barca:
 	cmp #3
 	beq anim_reset
 	inc SP_POINTER
+	//jsr barca_fx
 anim_end:	
 	rts
 anim_reset:

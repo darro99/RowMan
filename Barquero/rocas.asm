@@ -7,6 +7,7 @@ rocas:
 	cmp #0
 	beq end_rocas
 	
+	jsr roca_fx_suena
 
 	ldy sprites.puntero_roca	
 	lda rocas_vel, y
@@ -32,6 +33,7 @@ mov_roca:
 	ldy sprites.puntero_roca	
 	cmp #CHAR_AGUA_PROF
 	bne cero_cont
+	jsr roca_fx
 	ldx sprites.desp_roca
 	lda rocas_y, y
 	sta SP_POSITION, x
@@ -58,6 +60,9 @@ anim_roca_sig:
 	sta rocas_del, y
 	jmp mas_roca
 	
+end_rocas:
+	rts		
+	
 anim_roca_next:
 	txa
 	sta SP_POINTER, y	
@@ -73,13 +78,11 @@ reset_rocas:
 	lda #0
 	sta sprites.puntero_roca
 	ldx tabla_spy, y
-	
-end_rocas:
-	rts	
+	rts
 
 oculta_rocas:
 	lda sprites.num_roca
-	beq end_rocas
+	beq fin_oculta_rocas
 	lda #0
 	ldy #0
 ocu_sig:
@@ -89,4 +92,5 @@ ocu_sig:
 	iny
 	cpy sprites.num_roca
 	bne ocu_sig
+fin_oculta_rocas:	
 	rts	

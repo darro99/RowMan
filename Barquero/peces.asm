@@ -124,6 +124,7 @@ pez_entra:
 	rts
 
 pez_puntua:
+	jsr pez_fx
 	dec SP_POSITION + 15
 	dec SP_POSITION + 15
 	dec SP_POSITION + 15
@@ -147,6 +148,8 @@ pez_fin:
 	lda SP_POINTER + 7
 	lda	#5
 	sta pez.frame
+	lda #0
+	sta NOTA_ACT_PEZ
 	rts	
 
 pez_mov:

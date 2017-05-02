@@ -190,6 +190,7 @@ NIVEL6:
 	.byte DELAY, 255, 50
 	.byte FIN_NIVEL	
 NIVEL7:
+	//.byte NOFISH
 	.byte JUGADOR, 170,222
 	.byte ROCA,    145, 10, 40
 	.byte ROCA,    195, 10, 40
@@ -197,7 +198,7 @@ NIVEL7:
 	.byte SALIENTE, 20, 0, 20, 14, LEFT ,DOWN
 	.byte BLOQUE, 	25, 5, 15, 18
 	.byte SALIENTE,  0, 7, 13,  7, RIGHT,UP
-	.byte BLOQUE, 	 0, 6, 13, 19
+	.byte BLOQUE, 	 0, 6, 13, 18
 	.byte BMONEDAS, 19, 3,  1,  9			
 	.byte DELAY, 200, 40
 	.byte FIN_NIVEL

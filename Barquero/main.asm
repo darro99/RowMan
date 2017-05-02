@@ -42,6 +42,8 @@ myDataChars: .fill dataChars.getSize(), dataChars.get(i)
 .import source "finales.asm"
 
 .import source "peces.asm"
+
+.import source "fx.asm"
 main:
        
    
@@ -49,20 +51,24 @@ main:
     lda #0
     sta BACKGROUND
     sta BORDER
+    //sta roca_suena
+    //sta roca_sonando
     
     jsr init_sprites
     jsr init_screen
     jsr init_pez
     
     //INCIALIZACION SIN PORTADA
-	//lda #30
-    //sta pez.max_delay
-    //ldy #NUMVIDAS
-    //sty vars_game.vidas
-	//lda #54
-	//sta vars_game.nivel
-	//jsr gen_niveles
-	//jsr init_agua
+	/*lda #30
+    sta pez.max_delay
+    ldy #NUMVIDAS
+    sty vars_game.vidas
+	lda #4
+	sta vars_game.nivel
+	jsr init_fx
+	jsr gen_niveles
+	jsr init_agua*/
+	
 
 	//INCIALIZACION CON PORTADA
 	jsr pant_init
@@ -101,12 +107,12 @@ irq:
 	cpx #INICIO
 	//bne end_irq
 	bcc end_irq
-cont_irq:	
-	jsr comp_fire
-	jsr principal
-	jsr pez_anim
+cont_irq:
 	asl $d019
 	jsr music.play
+	jsr comp_fire
+	jsr pez_anim
+	jsr principal
 	pla
 	tay
 	pla
